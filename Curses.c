@@ -4,9 +4,14 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.6 2021/03/22 18:03:48 cmb Exp $
+ * $Id: Curses.c,v 1.7 2021/07/27 16:52:49 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.7  2021/07/27 16:52:49  cmb
+ * Added functions to display a string centred on the screen at a
+ * particular line, and to display a centred line of dashes ('---') of a
+ * given length.
+ *
  * Revision 1.6  2021/03/22 18:03:48  cmb
  * Added code to define and print large characters on the curses terminal
  * - digits only (plus colon) just now, but the principle could be fairly
@@ -555,6 +560,31 @@ void large_num(int x, int y, int digit)
 	}
     }
     refresh();
+}
+
+/*----------------------------------------------------------------------
+ * CtrText	Center text on display on given line
+ *----------------------------------------------------------------------*/
+
+void CtrText(int line, char *string)
+{
+    int x0 = (COLS / 2) - (strlen(string) / 2);
+    mvaddstr(line, x0, string);
+}
+
+/*----------------------------------------------------------------------
+ * CtrLine	Display a line of '-' of appropriate length, centred on
+ *		display.
+ *----------------------------------------------------------------------*/
+
+void CtrLine(int line, int len)
+{
+    char *Line = malloc(len + 1);
+    
+    memset(Line, '-', len);
+    Line[len] = '\0';
+    CtrText(line, Line);
+    free(Line);
 }
 
 /*----------------------------------------------------------------------*/
