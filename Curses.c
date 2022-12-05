@@ -4,9 +4,12 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.8 2021/07/27 19:25:11 cmb Exp $
+ * $Id: Curses.c,v 1.9 2021/08/02 14:14:35 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.9  2021/08/02 14:14:35  cmb
+ * Added routine to clear curses screen and force all characters to space
+ *
  * Revision 1.8  2021/07/27 19:25:11  cmb
  * Added white on red colour pair
  *
@@ -594,6 +597,24 @@ void CtrLine(int line, int len)
     Line[len] = '\0';
     CtrText(line, Line);
     free(Line);
+}
+
+/*----------------------------------------------------------------------
+ * cleartospace		Clear curses screen and force all characters to
+ *			space
+ *----------------------------------------------------------------------*/
+
+void cleartospace()
+{
+    int x, y;
+    clear();
+    for (y = 0; y < LINES; y++)
+    {
+        for (x = 0; x < COLS; x++)
+        {
+            mvaddch(y, x, ' ');
+        }
+    }
 }
 
 /*----------------------------------------------------------------------*/
