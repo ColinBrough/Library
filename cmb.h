@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.21 2003/06/03 12:20:26 cmb Exp $
+ * $Id: cmb.h,v 1.22 2003/11/18 15:47:45 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.22  2003/11/18 15:47:45  cmb
+ * Updated
+ *
  * Revision 1.21  2003/06/03 12:20:26  cmb
  * Updated.
  *
@@ -235,3 +238,4 @@ void cyan(void);
 int strlastcmp(char *s1, char *s2);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
+int Minimum(int a, int b);
