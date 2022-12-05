@@ -4,9 +4,12 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.2 1999/05/12 16:01:17 cmb Exp $
+ * $Id: Curses.c,v 1.3 2002/12/04 22:40:17 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.3  2002/12/04 22:40:17  cmb
+ * Removed character constant that's changed on the new machine.
+ *
  * Revision 1.2  1999/05/12 16:01:17  cmb
  * Updated to have more of the curses initialisation code "canned" here.
  *
@@ -345,7 +348,7 @@ get_string(char *result, int y, int x, int maxlen, int up_down)
 			for (i = pos; i < len; i++) result[i] = result[i+1];
 			result[len] = '\0';
 			break;
-		case '':
+			/*		case '':*/
 		case KEY_ENTER:
 			free(blank);
 			return(maxlen+pos);	
