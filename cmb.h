@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.65 2021/03/22 17:18:06 cmb Exp $
+ * $Id: cmb.h,v 1.66 2021/03/25 19:17:32 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.66  2021/03/25 19:17:32  cmb
+ * Updated
+ *
  * Revision 1.65  2021/03/22 17:18:06  cmb
  * UPdated
  *
@@ -403,6 +406,16 @@ void StopCurses(void);
 int  get_string(char *result, int y, int x, int maxlen, int up_down);
 void large_num(int x, int y, int digit);
 
+/*----------------------------------------------------------------------
+ * CursesLargeFont.c	Static array with definition for a large font to 
+ *			be displayed via Curses, and functions for doing
+ *			the displaying...
+ *----------------------------------------------------------------------*/
+
+extern int LargeFont[100][8][5];	/* Large font array */
+
+void large_char(int x, int y, char c);
+
 /*----------------------------------------
  * Colours.c
  *----------------------------------------*/
@@ -454,3 +467,4 @@ int RandomInt(int range_bottom, int range_top);
 /*----------------------------------------
  * Images.c
  *----------------------------------------*/
+
