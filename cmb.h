@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.17 2002/12/18 16:24:16 cmb Exp $
+ * $Id: cmb.h,v 1.18 2002/12/18 16:29:46 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.18  2002/12/18 16:29:46  cmb
+ * Updated.
+ *
  * Revision 1.17  2002/12/18 16:24:16  cmb
  * Updated.
  *
@@ -97,7 +100,6 @@
  * header files.
  *----------------------------------------------------------------------*/
 
-#define WHITE_ON_BLACK    0
 #define BLACK_ON_WHITE    1
 #define RED_ON_WHITE      2
 #define BLUE_ON_WHITE     3
@@ -111,6 +113,7 @@
 #define YELLOW_ON_BLACK  11
 #define MAGENTA_ON_BLACK 12
 #define CYAN_ON_BLACK    13
+#define WHITE_ON_BLACK   14
 
 /*----------------------------------------------------------------------
  * A fancy error reporting macro - doubt this will work except with gcc!
