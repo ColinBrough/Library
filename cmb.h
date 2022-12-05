@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.1 1998/07/25 14:30:57 cmb Exp $
+ * $Id: cmb.h,v 1.2 1998/07/25 14:36:27 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.2  1998/07/25 14:36:27  cmb
+ * Added another function header.
+ *
  * Revision 1.1  1998/07/25 14:30:57  cmb
  * Initial revision
  *
@@ -76,9 +79,20 @@ typedef struct FileDes
  * Now the headers for each of the available routines.
  *----------------------------------------------------------------------*/
 
+/*----------------------------------------
+ * FileUtils.c
+ *----------------------------------------*/
+
 void
 map_file(FileDes *f);
 void
 unmap_file(FileDes *f);
 void
 copy_file(FILE *outs, char *infname);
+
+/*----------------------------------------
+ * Curses.c
+ *----------------------------------------*/
+
+int
+get_string(char *result, int y, int x, int maxlen, int up_down);
