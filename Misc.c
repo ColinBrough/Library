@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.25 2019/01/21 11:58:48 cmb Exp $
+ * $Id: Misc.c,v 1.26 2019/01/21 12:00:27 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.26  2019/01/21 12:00:27  cmb
+ * Added proper 'void' to function definition
+ *
  * Revision 1.25  2019/01/21 11:58:48  cmb
  * Changed so routine just sets the internal value, doesn't return the
  * number.
@@ -101,7 +104,7 @@
  *			sensibly index arrays by hostname...
  *----------------------------------------------------------------------*/
 
-void gethostnumber()
+void gethostnumber(void)
 {
     if (HostNumber != -1)
     {
