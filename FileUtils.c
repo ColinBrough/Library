@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.21 2020/12/29 21:28:50 cmb Exp $
+ * $Id: FileUtils.c,v 1.22 2021/05/29 21:43:09 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.22  2021/05/29 21:43:09  cmb
+ * Added ReadFloatFromFile function
+ *
  * Revision 1.21  2020/12/29 21:28:50  cmb
  * Updated the file compare utility routine so it will work properly on
  * binary files (that may have a bytes in them that would otherwise be
@@ -318,6 +321,23 @@ int ReadIntFromFile(char *fname)
     fclose(f);
 
     return(atoi(buf));
+}
+
+/*----------------------------------------------------------------------
+ * ReadFloatFromFile	Routine to read a floating point value from a file
+ *----------------------------------------------------------------------*/
+
+float ReadFloatFromFile(char *fname)
+{
+    FILE *f;
+    char buf[100];
+
+    bzero(buf, 100);
+    f = fopen(fname, "r");
+    fgets(buf, 100, f);
+    fclose(f);
+
+    return(atof(buf));
 }
 
 /*----------------------------------------------------------------------
