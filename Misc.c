@@ -3,9 +3,14 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.32 2021/04/19 20:58:55 cmb Exp $
+ * $Id: Misc.c,v 1.33 2021/07/28 15:22:20 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.33  2021/07/28 15:22:20  cmb
+ * Added routine that strips trailing spaces off a string passed in,
+ * replacing them with '\0', and returning a pointer to the string
+ * (modified in place).
+ *
  * Revision 1.32  2021/04/19 20:58:55  cmb
  * Fixed the random number generating function so it is properly random -
  * to do with where the pseudo random number generator behind 'rand()'
@@ -225,6 +230,29 @@ int strfirstcmp(char *s1, char *s2)
     int l;
     l = Minimum(strlen(s1), strlen(s2));
     return(strncmp(s1, s2, l));
+}
+
+/*----------------------------------------------------------------------
+ * strremovetrailspaces		Remove any trailing spaces in passed in
+ *				string, replacing them with '\0'...
+ *----------------------------------------------------------------------*/
+
+char *strremovetrailspaces(char *s)
+{
+    int i = strlen(s) - 1;	/* Last real character in the string */
+    while (i >= 0)
+    {
+	if (s[i] == ' ')
+	{
+	    s[i] = '\0';
+	    i--;
+	}
+	else
+	{
+	    break;
+	}
+    }
+    return(s);
 }
 
 /*----------------------------------------------------------------------
