@@ -4,9 +4,12 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.4 2002/12/18 16:24:19 cmb Exp $
+ * $Id: Curses.c,v 1.5 2008/08/19 19:37:28 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.5  2008/08/19 19:37:28  cmb
+ * Made it able to use wider than 80 column terminals.
+ *
  * Revision 1.4  2002/12/18 16:24:19  cmb
  * Updated.
  *
@@ -68,7 +71,7 @@ void StartCurses(void)
     }
     start_color();
     
-    if ((LINES < 24) || (COLS != 80))
+    if ((LINES < 24) || (COLS < 80))
     {
         error("Illegal number of lines (%d) or columns (%d)\n", 
               LINES, COLS);
