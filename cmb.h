@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.30 2012/08/24 09:34:08 cmb Exp $
+ * $Id: cmb.h,v 1.31 2013/01/30 14:05:15 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.31  2013/01/30 14:05:15  cmb
+ * UPdated
+ *
  * Revision 1.30  2012/08/24 09:34:08  cmb
  * Updated
  *
@@ -270,6 +273,7 @@ void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
 int DaysInYear(int year);
 float DateAsFloat(int year, int month, int day);
+void FloatAsDate(float proportion, int *year, int *month, int *day);
 int DaysSinceFirstJan(int year, int month, int day);
 int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2);
 int DaysSinceSunday(int year, int month, int day);
