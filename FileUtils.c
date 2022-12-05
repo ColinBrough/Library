@@ -4,9 +4,13 @@
  *			of my own library of useful stuff.
  *
  *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.6 1998/08/04 22:15:56 cmb Exp $
+ * $Id: FileUtils.c,v 1.7 1998/08/05 15:18:30 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.7  1998/08/05 15:18:30  cmb
+ * Made copy_file able to take an optional third argument which specifies
+ * a path to be prepended to the filename.
+ *
  * Revision 1.6  1998/08/04 22:15:56  cmb
  * Updated a couple of the function definitions so that they properly
  * label a couple of arguments that they use only as input with 'const',
@@ -85,19 +89,34 @@ unmap_file(FileDes *f)
 
 /*----------------------------------------------------------------------
  * Copy a file, given filename, onto the stream passed in as first
- * parameter.
+ * parameter. The optional third argument is a path that can be prepended
+ * to the filename, in much the same way as MapFile below.
  *----------------------------------------------------------------------*/
 
 void
-copy_file(FILE *outs, const char *infname)
+copy_file(FILE *outs, const char *infname, ...)
 {
+    va_list ap;
     FileDes f;
+    char *path = NULL;
+    
+    va_start(ap, infname);
 
-    strcpy(f.filename, infname);
+    path = va_arg(ap, char *);
+    if ((path != NULL) && (strlen(path) != 0))
+    {
+        sprintf(f.filename, "%s/%s", path, infname);
+    }
+    else
+    {
+        strcpy(f.filename, infname);
+    }
     
     map_file(&f);
     fwrite(f.page, sizeof(char), f.length, outs);
     unmap_file(&f);
+
+    va_end(ap);
 }
 
 /*----------------------------------------------------------------------
