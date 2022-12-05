@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.12 1999/02/27 15:47:41 cmb Exp $
+ * $Id: cmb.h,v 1.13 1999/05/12 16:01:12 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.13  1999/05/12 16:01:12  cmb
+ * Updated to have more of the curses initialisation code "canned" here.
+ *
  * Revision 1.12  1999/02/27 15:47:41  cmb
  * Updated.
  *
@@ -153,6 +156,7 @@ typedef struct FileDes
  * OK, so globals are bad form in a library, but handy...
  *----------------------------------------------------------------------*/
 
+extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
 
@@ -164,41 +168,29 @@ extern FILE *tfile;		/* Trace file				*/
  * FileUtils.c
  *----------------------------------------*/
 
-void
-map_file(FileDes *f);
-void
-unmap_file(FileDes *f);
-void
-copy_file(FILE *outs, const char *infname, const char *path);
-FileDes *
-MapFile(const char *filename, const char *path);
-void
-UnmapFile(FileDes *f);
+void map_file(FileDes *f);
+void unmap_file(FileDes *f);
+void copy_file(FILE *outs, const char *infname, const char *path);
+FileDes *MapFile(const char *filename, const char *path);
+void UnmapFile(FileDes *f);
 
 /*----------------------------------------
  * Curses.c
  *----------------------------------------*/
 
-int
-get_string(char *result, int y, int x, int maxlen, int up_down);
+void StartCurses(void);
+void StopCurses(void);
+int  get_string(char *result, int y, int x, int maxlen, int up_down);
 
 /*----------------------------------------
  * Colours.c
  *----------------------------------------*/
 
-void
-black(void);
-void
-red(void);
-void
-blue(void);
-void
-bold_blue(void);
-void
-bold_red(void);
-void
-green(void);
-void
-bold_green(void);
-void
-yellow(void);
+void black(void);
+void red(void);
+void blue(void);
+void bold_blue(void);
+void bold_red(void);
+void green(void);
+void bold_green(void);
+void yellow(void);
