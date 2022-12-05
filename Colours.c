@@ -4,9 +4,12 @@
  *			text output to stdout - ie, not inside curses.
  *
  *----------------------------------------------------------------------
- * $Id: Colours.c,v 1.3 1999/08/17 12:25:16 cmb Exp $
+ * $Id: Colours.c,v 1.4 2000/05/05 13:34:27 cmb Exp $
  *
  * $Log: Colours.c,v $
+ * Revision 1.4  2000/05/05 13:34:27  cmb
+ * Updated to add a clearscreen function.
+ *
  * Revision 1.3  1999/08/17 12:25:16  cmb
  * Updated - added cyan, and reformatted.
  *
@@ -19,6 +22,16 @@
  *----------------------------------------------------------------------*/
 
 #include <cmb.h>
+
+void clearscreen(void)
+{
+    /*------------------------------------------------------------------
+     * This stuff resets clears the screen without going into curses.
+     *------------------------------------------------------------------*/
+    printf("%c%c%c%c%c%c%c", 27, '[', 'H', 27, '[', '2', 'J');
+}
+
+/*----------------------------------------------------------------------*/
 
 void black(void)
 {
