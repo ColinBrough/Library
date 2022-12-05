@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.8 2007/09/12 21:28:05 cmb Exp $
+ * $Id: Misc.c,v 1.9 2007/09/12 21:34:43 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.9  2007/09/12 21:34:43  cmb
+ * Fixed a floating point/casting error
+ *
  * Revision 1.8  2007/09/12 21:28:05  cmb
  * Updated
  *
@@ -112,7 +115,7 @@ float DateAsFloat(int year, int month, int day)
     }
     days += day;
     yeardays += DaysInMonth(year, 2);
-    y += (days / yeardays);
+    y =  y + ((float) days / (float) yeardays);
     return(y);
 }
 
