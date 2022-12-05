@@ -5,9 +5,13 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.7 1998/08/04 22:15:24 cmb Exp $
+ * $Id: cmb.h,v 1.8 1998/08/05 15:19:11 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.8  1998/08/05 15:19:11  cmb
+ * Changed the prototype of copy_file to enable it to take an optional
+ * third (path) argument.
+ *
  * Revision 1.7  1998/08/04 22:15:24  cmb
  * Updated so that a couple of functions properly describe things that
  * they only use as input as 'const'.
@@ -147,7 +151,7 @@ map_file(FileDes *f);
 void
 unmap_file(FileDes *f);
 void
-copy_file(FILE *outs, const char *infname);
+copy_file(FILE *outs, const char *infname, ...);
 FileDes *
 MapFile(const char *filename, ...);
 void
