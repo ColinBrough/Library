@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.8 2013/03/15 09:28:49 cmb Exp $
+ * $Id: cmb.c,v 1.9 2013/03/18 12:04:49 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.9  2013/03/18 12:04:49  cmb
+ * Updated
+ *
  * Revision 1.8  2013/03/15 09:28:49  cmb
  * Updated
  *
@@ -52,9 +55,13 @@ char *WeekNamesLong[7] = { "Sunday", "Monday", "Tuesday", "Wednesday",
 
 char *WeekNamesShort[7] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
-int ColoursInitialised = FALSE;	/* Flag indicating whether colour strings (below)
-				 * have been initialised yet
-				 */
-char ColoursClearScr[8], ColoursBlack[6], ColoursRed[8], ColoursBlue[8], 
-    ColoursBoldBlue[8], ColoursBoldRed[8], ColoursGreen[8], ColoursBoldGreen[8], 
-    ColoursYellow[8], ColoursCyan[8];
+char ColoursClearScr[8]  = { 27, '[', 'H', 27, '[', '2', 'J', '\0' };
+char ColoursBlack[6]     = { 27, '[', '0', '0', 'm', '\0' };
+char ColoursRed[8]       = { 27, '[', '0', ';', '3', '1', 'm', '\0' };
+char ColoursBlue[8]      = { 27, '[', '0', ';', '3', '4', 'm', '\0' };
+char ColoursBoldBlue[8]  = { 27, '[', '3', '4', ';', '1', 'm', '\0' };
+char ColoursBoldRed[8]   = { 27, '[', '3', '1', ';', '1', 'm', '\0' };
+char ColoursGreen[8]     = { 27, '[', '0', ';', '3', '2', 'm', '\0' };
+char ColoursBoldGreen[8] = { 27, '[', '3', '2', ';', '1', 'm', '\0' };
+char ColoursYellow[8]    = { 27, '[', '0', ';', '3', '3', 'm', '\0' };
+char ColoursCyan[8]      = { 27, '[', '0', ';', '3', '6', 'm', '\0' };
