@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.20 2018/02/20 15:34:32 cmb Exp $
+ * $Id: Misc.c,v 1.21 2018/02/20 15:39:43 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.21  2018/02/20 15:39:43  cmb
+ * Shifted base year to 1900, hopefully fixing a bug with DaysBetween and
+ * MonthsBetween routines
+ *
  * Revision 1.20  2018/02/20 15:34:32  cmb
  * Updated
  *
@@ -281,8 +285,8 @@ int DaysSinceFirstJan(int year, int month, int day)
 int MonthsBetween(int y1, int m1, int y2, int m2)
 {
     int Months1, Months2;
-    Months1 = 12 * (y1 - 1970) + m1;
-    Months2 = 12 * (y2 - 1970) + m2;
+    Months1 = 12 * (y1 - 1900) + m1;
+    Months2 = 12 * (y2 - 1900) + m2;
     return(Months1 - Months2);
 }
 
@@ -299,7 +303,7 @@ int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2)
     }
     days1 = DaysSinceFirstJan(y1,m1,d1);
     i = y1 - 1;
-    while (i >= 1970)
+    while (i >= 1900)
     {
 	days1 += DaysInYear(i);
 	i--;
@@ -307,7 +311,7 @@ int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2)
 
     days2 = DaysSinceFirstJan(y2,m2,d2);
     i = y2 - 1;
-    while (i >= 1970)
+    while (i >= 1900)
     {
 	days2 += DaysInYear(i);
 	i--;
