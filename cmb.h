@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.40 2014/12/22 14:53:27 cmb Exp $
+ * $Id: cmb.h,v 1.41 2015/05/08 11:13:14 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.41  2015/05/08 11:13:14  cmb
+ * Updated
+ *
  * Revision 1.40  2014/12/22 14:53:27  cmb
  * Updated
  *
@@ -244,6 +247,13 @@ typedef struct FileDes
     FILE *file;
 } FileDes;
 
+typedef struct ImgElem
+{
+    int r;
+    int g;
+    int b;
+} ImgElem;
+
 /*----------------------------------------------------------------------
  * OK, so globals are bad form in a library, but handy...
  *----------------------------------------------------------------------*/
@@ -323,9 +333,14 @@ int DaysInYear(int year);
 float DateAsFloat(int year, int month, int day);
 void FloatAsDate(float proportion, int *year, int *month, int *day);
 int DaysSinceFirstJan(int year, int month, int day);
+int MonthsBetween(int y1, int m1, int y2, int m2);
 int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2);
 int DaysSinceSunday(int year, int month, int day);
 int DaysSinceMonday(int year, int month, int day);
 void AddDaysTo(int *Year, int *Month, int *Day, int Days);
 int IsDate(int year, int month, int day);
 int Minimum(int a, int b);
+
+/*----------------------------------------
+ * Images.c
+ *----------------------------------------*/
