@@ -3,9 +3,16 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.9 2007/09/12 21:34:43 cmb Exp $
+ * $Id: Misc.c,v 1.10 2008/10/21 21:10:31 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.10  2008/10/21 21:10:31  cmb
+ * Added routines to:
+ *
+ *  - calculate the number of days in a year
+ *  - calculate the number of days since the first of January
+ *  - calculate the number of days between two dates
+ *
  * Revision 1.9  2007/09/12 21:34:43  cmb
  * Fixed a floating point/casting error
  *
@@ -99,6 +106,23 @@ int DaysInMonth(int year, int month)
 }
 
 /*----------------------------------------------------------------------
+ * DaysInYear	Routine to return the number of days in a year, given
+ *		the year.
+ *----------------------------------------------------------------------*/
+
+int DaysInYear(int year)
+{
+    if (DaysInMonth(year, 2) == 28)
+    {
+	return(365);
+    }
+    else
+    {
+	return(366);
+    }
+}
+
+/*----------------------------------------------------------------------
  * DateAsFloat	Routine a date as a year.proportion of year...
  *----------------------------------------------------------------------*/
 
@@ -117,6 +141,55 @@ float DateAsFloat(int year, int month, int day)
     yeardays += DaysInMonth(year, 2);
     y =  y + ((float) days / (float) yeardays);
     return(y);
+}
+
+/*----------------------------------------------------------------------
+ * DaysSinceFirstJan	Routine to compute the number of days since the 
+ *			first of January in the same year
+ *----------------------------------------------------------------------*/
+
+int DaysSinceFirstJan(int year, int month, int day)
+{
+    int i = 1, total = 0;
+
+    while (i < month)
+    {
+	total += DaysInMonth(year, i);
+	i++;
+    }
+    total += day;
+    total--;
+    return(total);
+}
+
+/*----------------------------------------------------------------------
+ * DaysBetween	Routine to compute the number of days between two dates
+ *----------------------------------------------------------------------*/
+
+int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2)
+{
+    int i, days1, days2;
+    if (Minimum(y1,y2) < 1970)
+    {
+	error("Date out of range: %d/%d/%d or %d/%d/%d\n", d1,m1,y1,d2,m2,y2);
+    }
+    days1 = DaysSinceFirstJan(y1,m1,d1);
+    i = y1 - 1;
+    while (i >= 1970)
+    {
+	days1 += DaysInYear(i);
+	i--;
+    }
+
+    days2 = DaysSinceFirstJan(y2,m2,d2);
+    i = y2 - 1;
+    while (i >= 1970)
+    {
+	days2 += DaysInYear(i);
+	i--;
+    }
+    
+    return(days1 - days2);
 }
 
 /*----------------------------------------------------------------------
