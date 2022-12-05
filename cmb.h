@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.38 2013/09/19 11:47:58 cmb Exp $
+ * $Id: cmb.h,v 1.39 2014/06/04 14:27:02 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.39  2014/06/04 14:27:02  cmb
+ * Updated
+ *
  * Revision 1.38  2013/09/19 11:47:58  cmb
  * Added function definitions for hostname handling functions (ishost,
  * topaz, mica, rock).
@@ -136,6 +139,8 @@
  * Initial revision
  *
  *----------------------------------------------------------------------*/
+
+#define _GNU_SOURCE         /* Be quite happy to use GNU extensions	*/
 
 #include <stdio.h>
 #include <stdarg.h>
