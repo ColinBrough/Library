@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.22 2018/06/06 12:20:49 cmb Exp $
+ * $Id: Misc.c,v 1.23 2018/08/14 12:53:06 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.23  2018/08/14 12:53:06  cmb
+ * Added a routine to generate a random number between a top and a bottom
+ * figure
+ *
  * Revision 1.22  2018/06/06 12:20:49  cmb
  * Updated
  *
@@ -549,3 +553,31 @@ int Minimum(int a, int b)
 {
     return((a < b) ? a : b);
 }
+
+/*----------------------------------------------------------------------
+ * RandomInt	Routine to generate a random integer within a given range
+ *----------------------------------------------------------------------*/
+
+int RandomInt(int range_bottom, int range_top)
+{
+    int range_length, r, result;
+    time_t t;
+
+    t = time(NULL);
+    srand(t);
+    r = rand();
+
+    if ((range_top < range_bottom) ||
+	(range_top < 1) ||
+	(range_bottom < 0))
+    {
+	error("Can't generate a random integer in that range (%d ... %d)\n", range_bottom,range_top);
+    }
+    range_length = range_top - range_bottom;
+    result = (int) rint((((float) r / (float) RAND_MAX) * (float) range_length)
+                        + (float) range_bottom);
+    if (result == range_top) result = range_bottom;
+    return(result);
+}
+
+/*----------------------------------------------------------------------*/
