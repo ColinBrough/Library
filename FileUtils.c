@@ -3,9 +3,14 @@
  *	FileUtils.c	File handling utility routines that are part
  *			of my own library of useful stuff.
  *
- *---------------------------------------------------------------------- * $Id: FileUtils.c,v 1.8 1998/08/21 20:52:03 cmb Exp $
+ *---------------------------------------------------------------------- 
+ * $Id: FileUtils.c,v 1.9 2009/08/12 20:29:28 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.9  2009/08/12 20:29:28  cmb
+ * Added routine to check whether one file is more recently modified than
+ * another.
+ *
  * Revision 1.8  1998/08/21 20:52:03  cmb
  * Removed use of varargs, since was introducing a bug. Made routines
  * take a path argument, which will be explicitly NULL when no path needs
@@ -159,4 +164,24 @@ UnmapFile(FileDes *f)
 {
     unmap_file(f);
     free(f);
+}
+
+/*----------------------------------------------------------------------
+ * IsNewerN	Routine to return true if file 'f1' is newer than file
+ *		'f2', and false otherwise.
+ *----------------------------------------------------------------------*/
+
+int IsNewerN(char *f1, char *f2)
+{
+    struct stat sbuf1, sbuf2;
+
+    if (stat(f1, &sbuf1) == -1)
+    {
+        error("Failed to stat file: %s\n", f1);
+    }
+    if (stat(f2, &sbuf2) == -1)
+    {
+        error("Failed to stat file: %s\n", f2);
+    }
+    return(sbuf1.st_mtime > sbuf2.st_mtime);
 }
