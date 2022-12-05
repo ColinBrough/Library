@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.3 2003/04/22 23:07:42 cmb Exp $
+ * $Id: Misc.c,v 1.4 2003/06/03 12:21:00 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.4  2003/06/03 12:21:00  cmb
+ * Added a routine to return the number of days in a given month
+ *
  * Revision 1.3  2003/04/22 23:07:42  cmb
  * Fixed typo
  *
@@ -57,4 +60,25 @@ void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec)
     *day   = T->tm_mday;
     *month = T->tm_mon + 1;
     *year  = T->tm_year + 1900;
+}
+
+/*----------------------------------------------------------------------
+ * DaysInMonth	Routine to return the number of days in a month, given
+ *		month and year.
+ *----------------------------------------------------------------------*/
+
+int DaysInMonth(int year, int month)
+{
+    int days_in_month[]={ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+
+    if ((month < 1) || (month > 12))
+    {
+	error("Month out of range: %d\n", month);
+    }
+    
+    if ((year % 4 == 0) && !((year % 100 == 0) && (year % 400 != 0)))
+    {
+        days_in_month[2]++;	/* February has 29 days... */
+    }
+    return(days_in_month[month]);
 }
