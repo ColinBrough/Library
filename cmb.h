@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.66 2021/03/25 19:17:32 cmb Exp $
+ * $Id: cmb.h,v 1.67 2021/03/25 20:13:09 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.67  2021/03/25 20:13:09  cmb
+ * Updated
+ *
  * Revision 1.66  2021/03/25 19:17:32  cmb
  * Updated
  *
@@ -412,7 +415,7 @@ void large_num(int x, int y, int digit);
  *			the displaying...
  *----------------------------------------------------------------------*/
 
-extern int LargeFont[100][8][5];	/* Large font array */
+extern int LargeFont[100][8][6];	/* Large font array */
 
 void large_char(int x, int y, char c);
 
