@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.10 2013/01/30 15:47:24 cmb Exp $
+ * $Id: FileUtils.c,v 1.11 2016/06/16 16:57:15 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.11  2016/06/16 16:57:15  cmb
+ * Summary: Added a routine to read an integer value from a file.
+ *
  * Revision 1.10  2013/01/30 15:47:24  cmb
  * Updated to remove compilation warning - sorted some casts...
  *
@@ -187,4 +190,21 @@ int IsNewerN(char *f1, char *f2)
         error("Failed to stat file: %s\n", f2);
     }
     return(sbuf1.st_mtime > sbuf2.st_mtime);
+}
+
+/*----------------------------------------------------------------------
+ * ReadIntFromFile	Routine to read an integer value from a file
+ *----------------------------------------------------------------------*/
+
+int ReadIntFromFile(char *fname)
+{
+    FILE *f;
+    char buf[100];
+
+    bzero(buf, 100);
+    f = fopen(fname, "r");
+    fgets(buf, 100, f);
+    fclose(f);
+
+    return(atoi(buf));
 }
