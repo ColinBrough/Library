@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.24 2019/01/21 11:56:20 cmb Exp $
+ * $Id: Misc.c,v 1.25 2019/01/21 11:58:48 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.25  2019/01/21 11:58:48  cmb
+ * Changed so routine just sets the internal value, doesn't return the
+ * number.
+ *
  * Revision 1.24  2019/01/21 11:56:20  cmb
  * Added code to produce a HostNumber
  *
@@ -97,35 +101,35 @@
  *			sensibly index arrays by hostname...
  *----------------------------------------------------------------------*/
 
-int gethostnumber()
+void gethostnumber()
 {
-    if (HostNumber == -1)
+    if (HostNumber != -1)
     {
-	if (strcmp(HostName, "NULL") == 0)
+	return;	/* Already set - do nothing */
+    }
+    if (strcmp(HostName, "NULL") == 0)
+    {
+	if (gethostname(HostName, 200) != 0)
 	{
-	    if (gethostname(HostName, 200) != 0)
-	    {
-		error("Failed to obtain hostname\n");
-	    }
-	}
-	if (strcmp(HostName, "rock") == 0)
-	{
-	    HostNumber = HOST_ROCK;
-	}
-	else if (strcmp(HostName, "mica") == 0)
-	{
-	    HostNumber = HOST_MICA;
-	}
-	else if (strcmp(HostName, "opal") == 0)
-	{
-	    HostNumber = HOST_OPAL;
-	}
-	else if (strcmp(HostName, "agate") == 0)
-	{
-	    HostNumber = HOST_AGATE;
+	    error("Failed to obtain hostname\n");
 	}
     }
-    return(HostNumber);
+    if (strcmp(HostName, "rock") == 0)
+    {
+	HostNumber = HOST_ROCK;
+    }
+    else if (strcmp(HostName, "mica") == 0)
+    {
+	HostNumber = HOST_MICA;
+    }
+    else if (strcmp(HostName, "opal") == 0)
+    {
+	HostNumber = HOST_OPAL;
+    }
+    else if (strcmp(HostName, "agate") == 0)
+    {
+	HostNumber = HOST_AGATE;
+    }
 }
 
 /*----------------------------------------------------------------------
