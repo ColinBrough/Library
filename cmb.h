@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.48 2019/01/09 16:40:22 cmb Exp $
+ * $Id: cmb.h,v 1.49 2019/01/21 11:44:10 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.49  2019/01/21 11:44:10  cmb
+ * Added hostnumber constants
+ *
  * Revision 1.48  2019/01/09 16:40:22  cmb
  * Added file detection/confirmation routine header
  *
@@ -254,6 +257,15 @@
         fprintf(tfile, format, ##args);\
         fflush(tfile);\
 }
+
+/*----------------------------------------------------------------------
+ * Some constants to represent particular hosts
+ *----------------------------------------------------------------------*/
+
+#define HOST_ROCK 0
+#define HOST_MICA 1
+#define HOST_OPAL 2
+#define HOST_AGATE 3
 
 /*----------------------------------------------------------------------
  * Type definitions
