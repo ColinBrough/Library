@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.14 2019/05/02 21:37:44 cmb Exp $
+ * $Id: FileUtils.c,v 1.15 2019/12/16 19:07:36 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.15  2019/12/16 19:07:36  cmb
+ * Added 'CopyFile' routine to mimic command line 'cp'...
+ *
  * Revision 1.14  2019/05/02 21:37:44  cmb
  * Added routines to check for the existence of directories and "regular"
  * objects (files, directories and symlinks).
@@ -349,3 +352,32 @@ void CreateDirectoryPath(char *pname)
     chdir(currentwd);
     free(currentwd);
 }
+
+/*----------------------------------------------------------------------
+ * CopyFile	The equivalent of the command 'cp'...
+ *----------------------------------------------------------------------*/
+
+void CopyFile(char *src, char *dest)
+{    
+    int input, output;
+    off_t bytesCopied = 0;
+    
+    struct stat sbuf = {0};
+
+    if ((input = open(src, O_RDONLY)) == -1)
+    {
+        error("Can't open source file to copy: %s\n", src);
+    }    
+    if ((output = creat(dest, 0660)) == -1)
+    {
+        close(input);
+        error("Can't creat destination file for copy: %s\n", dest);
+    }
+
+    fstat(input, &sbuf);
+    sendfile(output, input, &bytesCopied, sbuf.st_size);
+
+    close(input);
+    close(output);
+}
+/*----------------------------------------------------------------------*/
