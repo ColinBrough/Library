@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.45 2016/08/09 12:51:16 cmb Exp $
+ * $Id: cmb.h,v 1.46 2018/06/06 11:58:31 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.46  2018/06/06 11:58:31  cmb
+ * Updated
+ *
  * Revision 1.45  2016/08/09 12:51:16  cmb
  * Summary: Updated
  *
@@ -355,6 +358,7 @@ void AddDaysTo(int *Year, int *Month, int *Day, int Days);
 int IsDate(int year, int month, int day);
 char *DayNameLong(int year, int month, int day);
 char *DayNameShort(int year, int month, int day);
+int ToUTC(int Year, int Month, int Day, int Hour);
 char *FirstSecondThird(int i);
 int Minimum(int a, int b);
 
