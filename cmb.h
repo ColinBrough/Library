@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.35 2013/03/18 12:03:29 cmb Exp $
+ * $Id: cmb.h,v 1.36 2013/09/15 22:41:22 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.36  2013/09/15 22:41:22  cmb
+ * Updated
+ *
  * Revision 1.35  2013/03/18 12:03:29  cmb
  * Updated
  *
@@ -302,5 +305,6 @@ int DaysSinceFirstJan(int year, int month, int day);
 int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2);
 int DaysSinceSunday(int year, int month, int day);
 int DaysSinceMonday(int year, int month, int day);
+void AddDaysTo(int *Year, int *Month, int *Day, int Days);
 int IsDate(int year, int month, int day);
 int Minimum(int a, int b);
