@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.33 2013/03/15 09:30:40 cmb Exp $
+ * $Id: cmb.h,v 1.34 2013/03/15 09:55:20 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.34  2013/03/15 09:55:20  cmb
+ * Updated
+ *
  * Revision 1.33  2013/03/15 09:30:40  cmb
  * Updated
  *
@@ -274,6 +277,7 @@ int  get_string(char *result, int y, int x, int maxlen, int up_down);
  * Colours.c
  *----------------------------------------*/
 
+void ColoursInitialise(void);
 void clearscreen(void);
 void black(void);
 void red(void);
