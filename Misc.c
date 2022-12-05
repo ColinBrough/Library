@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.17 2015/05/08 11:25:17 cmb Exp $
+ * $Id: Misc.c,v 1.18 2015/05/21 11:54:39 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.18  2015/05/21 11:54:39  cmb
+ * Added routines to return the day of the week name of a given date
+ *
  * Revision 1.17  2015/05/08 11:25:17  cmb
  * Added MonthsBetween function
  *
@@ -408,6 +411,26 @@ int IsDate(int year, int month, int day)
 	return(FALSE);
     }
     return(TRUE);
+}
+
+/*----------------------------------------------------------------------
+ * DayNameLong		Return pointer to the string name for the day of
+ *			the week for a date
+ *----------------------------------------------------------------------*/
+
+char *DayNameLong(int year, int month, int day)
+{
+    return(WeekNamesLong[DaysSinceSunday(year, month, day)]);
+}
+
+/*----------------------------------------------------------------------
+ * DayNameShort		Return pointer to the short, 3-letter string name
+ *			for the day of the week for a date
+ *----------------------------------------------------------------------*/
+
+char *DayNameShort(int year, int month, int day)
+{
+    return(WeekNamesShort[DaysSinceSunday(year, month, day)]);
 }
 
 /*----------------------------------------------------------------------
