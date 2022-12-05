@@ -1,0 +1,20 @@
+README file for cmb personal utility library
+----------------------------------------------------------------------
+
+This is a small library of useful functions I find myself re-using,
+gathered together in one place for ease.
+
+    Colours.c    A series of routines to set colours, for use in
+                 text output to stdout - ie, not inside curses.
+
+    Curses.c     Various utility routines common when I am building
+                 a curses application.
+
+    FileUtils.c  File handling utility routines.
+
+    Misc.c       Miscellaneous utility routines.
+
+    cmb.c        Place to put global variables and other core, non header
+                 stuff for the library routines.
+
+    cmb.h        Header file for the library
