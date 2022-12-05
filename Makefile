@@ -3,7 +3,7 @@
 #	Makefile for my library of useful C routines directory.
 #
 #----------------------------------------------------------------------
-# $Id: Makefile,v 1.8 2002/12/18 16:25:33 cmb Exp $
+# $Id: Makefile,v 1.9 2015/03/09 17:34:02 cmb Exp $
 #----------------------------------------------------------------------
 
 INCDIR		= /home/cmb/include
@@ -17,6 +17,7 @@ OBJS	= FileUtils.o	\
 	  Curses.o	\
 	  Colours.o	\
 	  Misc.o	\
+	  Images.o	\
 	  cmb.o
 
 all:	cmb.a
