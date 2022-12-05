@@ -4,9 +4,12 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.3 2002/12/04 22:40:17 cmb Exp $
+ * $Id: Curses.c,v 1.4 2002/12/18 16:24:19 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.4  2002/12/18 16:24:19  cmb
+ * Updated.
+ *
  * Revision 1.3  2002/12/04 22:40:17  cmb
  * Removed character constant that's changed on the new machine.
  *
@@ -75,6 +78,10 @@ void StartCurses(void)
      * Now code to initialise the colour pairs to be used.
      *------------------------------------------------------------------*/
 
+    if (init_pair(WHITE_ON_BLACK, COLOR_WHITE, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : WHITE_ON_BLACK\n");
+    }
     if (init_pair(BLACK_ON_WHITE, COLOR_BLACK, COLOR_WHITE) == ERR)
     {
         error("Failed to initialise colour pair : BLACK_ON_WHITE\n");
@@ -102,6 +109,31 @@ void StartCurses(void)
     if (init_pair(CYAN_ON_WHITE, COLOR_CYAN, COLOR_WHITE) == ERR)
     {
         error("Failed to initialise colour pair : CYAN_ON_WHITE\n");
+    }
+
+    if (init_pair(RED_ON_BLACK, COLOR_RED, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : RED_ON_BLACK\n");
+    }
+    if (init_pair(BLUE_ON_BLACK, COLOR_BLUE, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : BLUE_ON_BLACK\n");
+    }
+    if (init_pair(GREEN_ON_BLACK, COLOR_GREEN, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : GREEN_ON_BLACK\n");
+    }
+    if (init_pair(YELLOW_ON_BLACK, COLOR_YELLOW, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : YELLOW_ON_BLACK\n");
+    }
+    if (init_pair(MAGENTA_ON_BLACK, COLOR_MAGENTA, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : MAGENTA_ON_BLACK\n");
+    }
+    if (init_pair(CYAN_ON_BLACK, COLOR_CYAN, COLOR_BLACK) == ERR)
+    {
+        error("Failed to initialise colour pair : CYAN_ON_BLACK\n");
     }
     attrset(A_NORMAL | COLOR_PAIR(BLACK_ON_WHITE));
 }
