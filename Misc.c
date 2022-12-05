@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.11 2012/08/23 20:20:03 cmb Exp $
+ * $Id: Misc.c,v 1.12 2013/01/30 15:48:20 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.12  2013/01/30 15:48:20  cmb
+ * Added FloatAsDate - routine to convert a year.proportion of a year to
+ * an approximate dd/mm/yyyy format...
+ *
  * Revision 1.11  2012/08/23 20:20:03  cmb
  * Added extra date handling utility routines
  *
@@ -144,6 +148,26 @@ float DateAsFloat(int year, int month, int day)
     yeardays += DaysInMonth(year, 2);
     y =  y + ((float) days / (float) yeardays);
     return(y);
+}
+
+/*----------------------------------------------------------------------
+ * FloatAsDate	Routine to convert a year.proportion of a year to an 
+ *		approximate dd/mm/yyyy format...
+ *----------------------------------------------------------------------*/
+
+void FloatAsDate(float proportion, int *year, int *month, int *day)
+{
+    int DayInYear;
+    
+    *year = (int) floor(proportion);
+    DayInYear = (int) floor(DaysInYear(*year) * ( proportion - floor(proportion) ) );
+    *month = 1;
+    while (DayInYear > DaysInMonth(*year, *month))
+    {
+	DayInYear -= DaysInMonth(*year, *month);
+	(*month)++;
+    }
+    *day = DayInYear;
 }
 
 /*----------------------------------------------------------------------
