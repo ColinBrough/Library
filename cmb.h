@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.73 2021/07/28 14:05:18 cmb Exp $
+ * $Id: cmb.h,v 1.74 2021/07/29 21:03:26 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.74  2021/07/29 21:03:26  cmb
+ * Added qsort suitable string comparison function
+ *
  * Revision 1.73  2021/07/28 14:05:18  cmb
  * Updated
  *
@@ -468,6 +471,7 @@ int mica(void);
 int rock(void);
 int opal(void);
 int agate(void);
+int cstring_cmp(const void *a, const void *b);
 int strlastcmp(char *s1, char *s2);
 int strfirstcmp(char *s1, char *s2);
 char *strremovetrailspaces(char *s);
