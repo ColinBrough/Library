@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.19 2015/05/21 12:10:26 cmb Exp $
+ * $Id: Misc.c,v 1.20 2018/02/20 15:34:32 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.20  2018/02/20 15:34:32  cmb
+ * Updated
+ *
  * Revision 1.19  2015/05/21 12:10:26  cmb
  * Added routine to return the ordinal indicator as a string (1st, 2nd,
  * 3rd etc...)
@@ -290,7 +293,7 @@ int MonthsBetween(int y1, int m1, int y2, int m2)
 int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2)
 {
     int i, days1, days2;
-    if (Minimum(y1,y2) < 1970)
+    if (Minimum(y1, y2) < 1900) /* Used to be set to 1970 - not sure if reducing it makes problems */
     {
 	error("Date out of range: %d/%d/%d or %d/%d/%d\n", d1,m1,y1,d2,m2,y2);
     }
