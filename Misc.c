@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.16 2014/12/22 15:09:36 cmb Exp $
+ * $Id: Misc.c,v 1.17 2015/05/08 11:25:17 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.17  2015/05/08 11:25:17  cmb
+ * Added MonthsBetween function
+ *
  * Revision 1.16  2014/12/22 15:09:36  cmb
  * Added code to compare the start of two strings (up to the length of
  * the shorter string).
@@ -258,6 +261,19 @@ int DaysSinceFirstJan(int year, int month, int day)
     total += day;
     total--;
     return(total);
+}
+
+/*----------------------------------------------------------------------
+ * MonthsBetween	Routine to compute the number of days between
+ *			two months
+ *----------------------------------------------------------------------*/
+
+int MonthsBetween(int y1, int m1, int y2, int m2)
+{
+    int Months1, Months2;
+    Months1 = 12 * (y1 - 1970) + m1;
+    Months2 = 12 * (y2 - 1970) + m2;
+    return(Months1 - Months2);
 }
 
 /*----------------------------------------------------------------------
