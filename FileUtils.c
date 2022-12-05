@@ -4,9 +4,14 @@
  *			of my own library of useful stuff.
  *
  *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.2 1998/07/25 15:02:58 cmb Exp $
+ * $Id: FileUtils.c,v 1.3 1998/08/04 18:23:06 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.3  1998/08/04 18:23:06  cmb
+ * Added wrapper functions round the lower level file mapping and
+ * unmapping functions that allows them to be used slightly more easily
+ * by applications.
+ *
  * Revision 1.2  1998/07/25 15:02:58  cmb
  * Added a load of error checking.
  *
@@ -79,4 +84,39 @@ copy_file(FILE *outs, char *infname)
     map_file(&f);
     fwrite(f.page, sizeof(char), f.length, outs);
     unmap_file(&f);
+}
+
+/*----------------------------------------------------------------------
+ * MapFile	Wrapper round the lower level file mapper, which allows
+ *		a filename to be passed in and returns a FileDes struct
+ *		having allocated memory for it. This memory will be freed
+ *		when the file is unmapped.
+ *----------------------------------------------------------------------*/
+
+FileDes *
+MapFile(char *filename)
+{
+    FileDes *f;
+    if ((f = (FileDes *) malloc(sizeof(FileDes))) == NULL)
+    {
+        error("Failed to allocate memory for a file descriptor structure "
+              "while trying\nto map the file: %s\n", filename);
+    }
+
+    strcpy(f->filename, filename);
+    map_file(f);
+    return(f);
+}
+
+/*----------------------------------------------------------------------
+ * UnmapFile	Wrapper round the lower level file unmapper, which calls
+ *		that routine and then frees the memory allocated for
+ *		the file descriptor struct.
+ *----------------------------------------------------------------------*/
+
+void
+UnmapFile(FileDes *f)
+{
+    unmap_file(f);
+    free(f);
 }
