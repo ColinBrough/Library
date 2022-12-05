@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.33 2021/07/28 15:22:20 cmb Exp $
+ * $Id: Misc.c,v 1.34 2021/07/29 21:03:43 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.34  2021/07/29 21:03:43  cmb
+ * Added qsort compatible string comparison function
+ *
  * Revision 1.33  2021/07/28 15:22:20  cmb
  * Added routine that strips trailing spaces off a string passed in,
  * replacing them with '\0', and returning a pointer to the string
@@ -200,6 +203,19 @@ int rock(void)
 {
     return(ishost("rock"));
 }
+
+/*----------------------------------------------------------------------
+ * cstring_cmp	Plucked from qsort example on net, wrapper round strcmp
+ *		to get it to work with qsort when sorting array of strings
+ *		eg char *Names[XX]...
+ *----------------------------------------------------------------------*/
+
+int cstring_cmp(const void *a, const void *b) 
+{ 
+    const char **ia = (const char **)a;
+    const char **ib = (const char **)b;
+    return(strcmp(*ia, *ib));
+} 
 
 /*----------------------------------------------------------------------
  * strlastcmp	Compare the ends of two strings
