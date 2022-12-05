@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.58 2019/12/16 16:43:07 cmb Exp $
+ * $Id: cmb.h,v 1.59 2020/03/03 20:37:51 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.59  2020/03/03 20:37:51  cmb
+ * Added FileSize header
+ *
  * Revision 1.58  2019/12/16 16:43:07  cmb
  * Added CopyFile - equivalent of 'cp' on the command-line
  *
@@ -365,6 +368,7 @@ int IsNewerN(char *f1, char *f2);
 int IsFile(char *f);
 int IsDir(char *f);
 int IsExisting(char *f);
+int FileSize(char *f);
 int ReadIntFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
 void CopyFile(char *src, char *dest);
