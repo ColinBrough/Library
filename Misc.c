@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.27 2019/01/21 19:27:51 cmb Exp $
+ * $Id: Misc.c,v 1.28 2019/01/21 19:29:47 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.28  2019/01/21 19:29:47  cmb
+ * Fixed missing variable declaration
+ *
  * Revision 1.27  2019/01/21 19:27:51  cmb
  * Generalised the code for generating a HostNumber, so it just lifts
  * names from the constant array defined in cmb.c...
@@ -110,6 +113,7 @@
 
 void gethostnumber(void)
 {
+    int i;
     if (HostNumber != -1)
     {
 	return;	/* Already set - do nothing */
