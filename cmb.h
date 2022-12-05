@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.64 2021/01/18 19:14:33 cmb Exp $
+ * $Id: cmb.h,v 1.65 2021/03/22 17:18:06 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.65  2021/03/22 17:18:06  cmb
+ * UPdated
+ *
  * Revision 1.64  2021/01/18 19:14:33  cmb
  * Moved most of the tracer functionality to C functions in cmb.c - there
  * are some new global variables here to support that, and a much smaller
@@ -398,6 +401,7 @@ int CmpFile(char *src, char *dest);
 void StartCurses(void);
 void StopCurses(void);
 int  get_string(char *result, int y, int x, int maxlen, int up_down);
+void large_num(int x, int y, int digit);
 
 /*----------------------------------------
  * Colours.c
