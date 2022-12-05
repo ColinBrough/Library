@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.39 2014/06/04 14:27:02 cmb Exp $
+ * $Id: cmb.h,v 1.40 2014/12/22 14:53:27 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.40  2014/12/22 14:53:27  cmb
+ * Updated
+ *
  * Revision 1.39  2014/06/04 14:27:02  cmb
  * Updated
  *
@@ -313,6 +316,7 @@ int topaz(void);
 int mica(void);
 int rock(void);
 int strlastcmp(char *s1, char *s2);
+int strfirstcmp(char *s1, char *s2);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
 int DaysInYear(int year);
