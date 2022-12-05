@@ -5,9 +5,16 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.63 2021/01/11 15:02:38 cmb Exp $
+ * $Id: cmb.h,v 1.64 2021/01/18 19:14:33 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.64  2021/01/18 19:14:33  cmb
+ * Moved most of the tracer functionality to C functions in cmb.c - there
+ * are some new global variables here to support that, and a much smaller
+ * 'tracer' macro to pick up the filename __FILE__ and lineno __LINE__.
+ * Won't work after 'if' statements since not able to be bracketed by
+ * braces.
+ *
  * Revision 1.63  2021/01/11 15:02:38  cmb
  * Updated
  *
@@ -282,24 +289,13 @@
 }
 
 /*----------------------------------------------------------------------
- * Macros to aid with tracing what is going on by doing flushed prints
- * to a TRACEFILE.
+ * Macro to aid with tracing what is going on by doing flushed prints
+ * to a TRACEFILE. Macro required to pickup the line number and filename,
+ * while all the other code is hidden in the functions defined in
+ * 'cmb.c'...
  *----------------------------------------------------------------------*/
 
-#define tracestart \
-{\
-        tfile = fopen("TRACEFILE", "w");\
-        fprintf(tfile, "Trace starts\n");\
-}
-
-#define traceend   { fprintf(tfile, "Trace ends\n"); fclose(tfile); }
-
-#define tracer( format, args...) \
-{\
-        fprintf(tfile, "%18s %5d ", __FILE__, __LINE__);\
-        fprintf(tfile, format, ##args);\
-        fflush(tfile);\
-}
+#define tracer CurrentFileName = strdup(__FILE__);CurrentLineNumber = __LINE__; TracerFunction
 
 /*----------------------------------------------------------------------
  * Some constants to represent particular hosts; probably rarely used;
@@ -343,6 +339,10 @@ typedef struct ImgElem
 extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
+extern int   tracelimit;        /* Bail-out limit when tracing - 0=infinite */
+extern int   tracecount;        /* Count of number of trace steps taken */
+extern int CurrentLineNumber;	/* Line number in file, used by tracing code */
+extern char *CurrentFileName;	/* Current filename, used by tracing code */
 extern char HostName[200];	/* Hostname				*/
 extern char *HostNames[NUMHOSTS];/* List of hostnames                   */
 extern int HostNumber;		/* A number for the current host	*/
@@ -364,8 +364,13 @@ extern char ColoursYellow[8];
 extern char ColoursCyan[8];
 
 /*----------------------------------------------------------------------
- * Now the headers for each of the available routines.
+ * Now the headers for each of the available routines. First ones are 
+ * from cmb.c, to do with tracing...
  *----------------------------------------------------------------------*/
+
+void tracestart(int l);
+void traceend();
+void TracerFunction(char *format, ...);
 
 /*----------------------------------------
  * FileUtils.c
