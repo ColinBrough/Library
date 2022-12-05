@@ -4,9 +4,14 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.20 2020/12/29 21:21:37 cmb Exp $
+ * $Id: FileUtils.c,v 1.21 2020/12/29 21:28:50 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.21  2020/12/29 21:28:50  cmb
+ * Updated the file compare utility routine so it will work properly on
+ * binary files (that may have a bytes in them that would otherwise be
+ * interpreted as end of string!).
+ *
  * Revision 1.20  2020/12/29 21:21:37  cmb
  * Rewrite of CopyFile routine when I realised it was truncating large
  * files on copy - probably some kind of kernel limit thing. Used a code
@@ -443,8 +448,8 @@ void CopyFile(char *src, char *dest)
 }
 
 /*----------------------------------------------------------------------
- * CmpFile	The equivalent of the command 'cmp'... meaning of return
- *		value is same as 'strcmp'...
+ * CmpFile	The equivalent of the command 'cmp'... returns zero if 
+ *		two files are identical.
  *----------------------------------------------------------------------*/
 
 int CmpFile(char *src, char *dest)
@@ -454,7 +459,15 @@ int CmpFile(char *src, char *dest)
     
     Fsrc  = MapFile(src,  NULL);
     Fdest = MapFile(dest, NULL);
-    compared = strcmp(Fsrc->page, Fdest->page);
+
+    if (Fsrc->length != Fdest->length)
+    {
+	compared = -1;
+    }
+    else
+    {
+	compared = bcmp(Fsrc->page, Fdest->page, Fsrc->length);
+    }
     UnmapFile(Fdest);
     UnmapFile(Fsrc);
     return(compared);
