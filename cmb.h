@@ -5,9 +5,13 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.37 2013/09/19 11:39:13 cmb Exp $
+ * $Id: cmb.h,v 1.38 2013/09/19 11:47:58 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.38  2013/09/19 11:47:58  cmb
+ * Added function definitions for hostname handling functions (ishost,
+ * topaz, mica, rock).
+ *
  * Revision 1.37  2013/09/19 11:39:13  cmb
  * Updated
  *
@@ -299,6 +303,10 @@ void cyan(void);
  * Misc.c
  *----------------------------------------*/
 
+int ishost(char *hname);
+int topaz(void);
+int mica(void);
+int rock(void);
 int strlastcmp(char *s1, char *s2);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
