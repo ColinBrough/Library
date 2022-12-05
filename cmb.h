@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.36 2013/09/15 22:41:22 cmb Exp $
+ * $Id: cmb.h,v 1.37 2013/09/19 11:39:13 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.37  2013/09/19 11:39:13  cmb
+ * Updated
+ *
  * Revision 1.36  2013/09/15 22:41:22  cmb
  * Updated
  *
@@ -236,6 +239,7 @@ typedef struct FileDes
 extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
+extern char HostName[200];	/* Hostname				*/
 
 extern char *MonthNamesLong[13];	/* Names of the months		*/
 extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
