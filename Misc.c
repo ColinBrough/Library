@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.6 2003/11/18 15:47:48 cmb Exp $
+ * $Id: Misc.c,v 1.7 2003/11/18 15:51:52 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.7  2003/11/18 15:51:52  cmb
+ * Fixed!
+ *
  * Revision 1.6  2003/11/18 15:47:48  cmb
  * Updated
  *
@@ -95,5 +98,5 @@ int DaysInMonth(int year, int month)
 
 int Minimum(int a, int b)
 {
-    (a < b) ? return(a) : return(b);
+    return((a < b) ? a : b);
 }
