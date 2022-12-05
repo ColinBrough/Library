@@ -5,9 +5,13 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.8 1998/08/05 15:19:11 cmb Exp $
+ * $Id: cmb.h,v 1.9 1998/08/19 21:12:20 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.9  1998/08/19 21:12:20  cmb
+ * Include the time header, and function prototypes for the colour
+ * routines.
+ *
  * Revision 1.8  1998/08/05 15:19:11  cmb
  * Changed the prototype of copy_file to enable it to take an optional
  * third (path) argument.
@@ -58,6 +62,7 @@
 #include <assert.h>
 #include <signal.h>
 #include <ncurses.h>
+#include <time.h>
 
 /*----------------------------------------------------------------------
  * Some common ncurses defines, to save space in the application specific
@@ -163,3 +168,24 @@ UnmapFile(FileDes *f);
 
 int
 get_string(char *result, int y, int x, int maxlen, int up_down);
+
+/*----------------------------------------
+ * Colours.c
+ *----------------------------------------*/
+
+void
+black(void);
+void
+red(void);
+void
+blue(void);
+void
+bold_blue(void);
+void
+bold_red(void);
+void
+green(void);
+void
+bold_green(void);
+void
+yellow(void);
