@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.7 2003/11/18 15:51:52 cmb Exp $
+ * $Id: Misc.c,v 1.8 2007/09/12 21:28:05 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.8  2007/09/12 21:28:05  cmb
+ * Updated
+ *
  * Revision 1.7  2003/11/18 15:51:52  cmb
  * Fixed!
  *
@@ -90,6 +93,27 @@ int DaysInMonth(int year, int month)
         days_in_month[2]++;	/* February has 29 days... */
     }
     return(days_in_month[month]);
+}
+
+/*----------------------------------------------------------------------
+ * DateAsFloat	Routine a date as a year.proportion of year...
+ *----------------------------------------------------------------------*/
+
+float DateAsFloat(int year, int month, int day)
+{
+    float y = (float) year;
+    int i, days = 0, yeardays = 337;
+    if (month > 1)
+    {
+	for (i = 1; i < month; i++)
+	{
+	    days += DaysInMonth(year, i);
+	}
+    }
+    days += day;
+    yeardays += DaysInMonth(year, 2);
+    y += (days / yeardays);
+    return(y);
 }
 
 /*----------------------------------------------------------------------
