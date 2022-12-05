@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.15 2000/05/05 13:36:31 cmb Exp $
+ * $Id: cmb.h,v 1.16 2000/05/09 20:24:11 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.16  2000/05/09 20:24:11  cmb
+ * Added header and routine from Misc.c
+ *
  * Revision 1.15  2000/05/05 13:36:31  cmb
  * Updated.
  *
@@ -202,3 +205,9 @@ void green(void);
 void bold_green(void);
 void yellow(void);
 void cyan(void);
+
+/*----------------------------------------
+ * Misc.c
+ *----------------------------------------*/
+
+int strlastcmp(char *s1, char *s2);
