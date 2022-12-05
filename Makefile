@@ -3,13 +3,13 @@
 #	Makefile for my library of useful C routines directory.
 #
 #----------------------------------------------------------------------
-# $Id: Makefile,v 1.4 1998/08/04 23:19:05 cmb Exp $
+# $Id: Makefile,v 1.5 1998/08/05 15:17:56 cmb Exp $
 #----------------------------------------------------------------------
 
 INCDIR		= /home/cmb/include
 LIBDIR		= /home/cmb/lib
 CC		= gcc
-CFLAGS		= -g -Wall
+CFLAGS		= -g -Wall -I.
 LDFLAGS		= -L$(LIBDIR)
 LOADLIBES	= -lcmb
 
