@@ -5,9 +5,14 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.4 1998/07/25 17:43:13 cmb Exp $
+ * $Id: cmb.h,v 1.5 1998/08/04 18:21:58 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.5  1998/08/04 18:21:58  cmb
+ * Added headers for two slightly higher level wrapper functions round
+ * the file mapping and unmapping code, making it slightly easier to use
+ * in conventional ways.
+ *
  * Revision 1.4  1998/07/25 17:43:13  cmb
  * Removed redundant true/false definitions.
  *
@@ -37,6 +42,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <assert.h>
+#include <signal.h>
 #include <ncurses.h>
 
 /*----------------------------------------------------------------------
@@ -133,6 +139,10 @@ void
 unmap_file(FileDes *f);
 void
 copy_file(FILE *outs, char *infname);
+FileDes *
+MapFile(char *filename);
+void
+UnmapFile(FileDes *f);
 
 /*----------------------------------------
  * Curses.c
