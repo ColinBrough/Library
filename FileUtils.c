@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.9 2009/08/12 20:29:28 cmb Exp $
+ * $Id: FileUtils.c,v 1.10 2013/01/30 15:47:24 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.10  2013/01/30 15:47:24  cmb
+ * Updated to remove compilation warning - sorted some casts...
+ *
  * Revision 1.9  2009/08/12 20:29:28  cmb
  * Added routine to check whether one file is more recently modified than
  * another.
@@ -73,8 +76,8 @@ map_file(FileDes *f)
     f->length = sbuf.st_size;
     f->page = 0;
 
-    if ((int)(f->page = mmap(0, f->length, PROT_READ,
-                             MAP_SHARED, f->file_descriptor, 0)) == -1)
+    if ((void *)(f->page = mmap(0, f->length, PROT_READ,
+				MAP_SHARED, f->file_descriptor, 0)) == MAP_FAILED)
     {
         printf("Failed to mmap file: %s\n", f->filename);
         exit(-1);
