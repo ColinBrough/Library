@@ -4,9 +4,15 @@
  *			of my own library of useful stuff.
  *
  *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.3 1998/08/04 18:23:06 cmb Exp $
+ * $Id: FileUtils.c,v 1.4 1998/08/04 19:12:48 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.4  1998/08/04 19:12:48  cmb
+ * Made the MapFile wrapper use the stdarg macros to detect whether,
+ * along with the filename, a path component is passed in. If so,
+ * construct the full path using path then filename, otherwise just use
+ * the filename.
+ *
  * Revision 1.3  1998/08/04 18:23:06  cmb
  * Added wrapper functions round the lower level file mapping and
  * unmapping functions that allows them to be used slightly more easily
@@ -94,17 +100,36 @@ copy_file(FILE *outs, char *infname)
  *----------------------------------------------------------------------*/
 
 FileDes *
-MapFile(char *filename)
+MapFile(char *filename, ...)
 {
+    va_list ap;
     FileDes *f;
+    char *path = NULL;
+    
+    va_start(ap, filename);
+    
     if ((f = (FileDes *) malloc(sizeof(FileDes))) == NULL)
     {
         error("Failed to allocate memory for a file descriptor structure "
               "while trying\nto map the file: %s\n", filename);
     }
 
-    strcpy(f->filename, filename);
+    path = va_arg(ap, char *);
+    if ((path != NULL) && (strlen(path) != 0))
+    {
+        fprintf(stderr, "Got a path name: %s [%d] (%s)\n",
+                path, strlen(path), filename);
+        sprintf(f->filename, "%s/%s", path, filename);
+    }
+    else
+    {
+        fprintf(stderr, "No path name: (%s)\n", filename);
+        strcpy(f->filename, filename);
+    }
+    
     map_file(f);
+
+    va_end(ap);
     return(f);
 }
 
