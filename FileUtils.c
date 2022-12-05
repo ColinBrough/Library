@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.11 2016/06/16 16:57:15 cmb Exp $
+ * $Id: FileUtils.c,v 1.12 2016/08/09 15:54:38 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.12  2016/08/09 15:54:38  cmb
+ * Added a function to create a whole directory path
+ *
  * Revision 1.11  2016/06/16 16:57:15  cmb
  * Summary: Added a routine to read an integer value from a file.
  *
@@ -207,4 +210,78 @@ int ReadIntFromFile(char *fname)
     fclose(f);
 
     return(atoi(buf));
+}
+
+/*----------------------------------------------------------------------
+ * CreateDirectoryPath	Routine to create a whole directory path, creating
+ *			parent components where necessary.
+ *----------------------------------------------------------------------*/
+
+void CreateDirectoryPath(char *pname)
+{
+    char *currentwd = NULL,
+	*segment = NULL,
+	*pathname;
+    int KeepGoing = TRUE, j;
+    struct stat sbuf;
+    
+    pathname = strdup(pname);	/* This is necessary because we are modifying 
+				 * the string in place - and if it is sent in as a
+				 * string constant, that doesn't work!!
+				 */
+
+    if (pathname == NULL)
+    {
+	return;
+    }
+    if (strlen(pathname) == 0)
+    {
+	return;
+    }
+
+    currentwd = getcwd(currentwd, 0);
+    
+    if (pathname[0] == '/')	/* Its an absolute pathname */
+    {
+	chdir("/");		/* Make the current directory the root dir */
+	pathname++;		/* And skip past the leading '/' */
+    }
+
+    /*------------------------------------------------------------------
+     * Loop through the segments of the path, picking off the first chunk,
+     * making sure it exists (if not creating it), then iterating on to
+     * next. Completes when no more '/' left in path...
+     *------------------------------------------------------------------*/
+    while (KeepGoing)
+    {
+	segment = pathname;
+	pathname = strchr(pathname, '/');
+	if (pathname == NULL)
+	{
+	    KeepGoing = FALSE;
+	}
+	else
+	{
+	    *pathname = '\0';	/* Replace the '/' with end of string character */
+	    pathname++;		/* Position 'pathname' at the start of the next segment */
+	}
+	/* Now check whether 'segment' already exists, or needs created... */
+	j = stat(segment, &sbuf);
+	if (j == -1)
+	{
+	    /* Directory doesn't exist; create it */
+	    mkdir(segment, 511);
+	}
+	else if ((sbuf.st_mode & S_IFMT) != S_IFDIR)
+	{
+	    error("A segment of the directory path to be created already exists, but is not a\n"
+		  "directory. Segment is: '%s'\n", segment);
+	}
+	/* The fall through case of that 'if' clause is the segment already exists and is a 
+	 * directory - so we can just 'chdir' into it, as if we'd just created it... */
+	chdir(segment);
+    }
+
+    chdir(currentwd);
+    free(currentwd);
 }
