@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.50 2019/01/21 11:48:01 cmb Exp $
+ * $Id: cmb.h,v 1.51 2019/01/21 12:00:00 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.51  2019/01/21 12:00:00  cmb
+ * Added function name for getting host number
+ *
  * Revision 1.50  2019/01/21 11:48:01  cmb
  * Added the host number variable
  *
@@ -361,6 +364,7 @@ void cyan(void);
  * Misc.c
  *----------------------------------------*/
 
+void gethostnumber(void);
 int ishost(char *hname);
 int topaz(void);
 int mica(void);
