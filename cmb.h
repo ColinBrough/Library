@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.72 2021/07/27 19:01:11 cmb Exp $
+ * $Id: cmb.h,v 1.73 2021/07/28 14:05:18 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.73  2021/07/28 14:05:18  cmb
+ * Updated
+ *
  * Revision 1.72  2021/07/27 19:01:11  cmb
  * Updated colour pair list
  *
@@ -467,6 +470,7 @@ int opal(void);
 int agate(void);
 int strlastcmp(char *s1, char *s2);
 int strfirstcmp(char *s1, char *s2);
+char *strremovetrailspaces(char *s);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
 int DaysInYear(int year);
