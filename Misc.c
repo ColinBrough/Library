@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.4 2003/06/03 12:21:00 cmb Exp $
+ * $Id: Misc.c,v 1.5 2003/06/03 12:52:20 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.5  2003/06/03 12:52:20  cmb
+ * Updated to throw away fields if passed in NULL.
+ *
  * Revision 1.4  2003/06/03 12:21:00  cmb
  * Added a routine to return the number of days in a given month
  *
@@ -54,12 +57,12 @@ void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec)
     time( &t );
     T = localtime(&t);
     
-    *sec   = T->tm_sec;
-    *min   = T->tm_min;
-    *hour  = T->tm_hour;
-    *day   = T->tm_mday;
-    *month = T->tm_mon + 1;
-    *year  = T->tm_year + 1900;
+    if (sec   != NULL) *sec   = T->tm_sec;
+    if (min   != NULL) *min   = T->tm_min;
+    if (hour  != NULL) *hour  = T->tm_hour;
+    if (day   != NULL) *day   = T->tm_mday;
+    if (month != NULL) *month = T->tm_mon + 1;
+    if (year  != NULL) *year  = T->tm_year + 1900;
 }
 
 /*----------------------------------------------------------------------
