@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.13 2013/09/15 22:41:53 cmb Exp $
+ * $Id: Misc.c,v 1.14 2013/09/19 11:46:20 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.14  2013/09/19 11:46:20  cmb
+ * Updated
+ *
  * Revision 1.13  2013/09/15 22:41:53  cmb
  * Updated
  *
@@ -53,6 +56,53 @@
  *----------------------------------------------------------------------*/
 
 #include "cmb.h"
+
+/*----------------------------------------------------------------------
+ * ishost	Routine to tell whether this is the named host....
+ *----------------------------------------------------------------------*/
+
+int ishost(char *hname)
+{
+    if (strcmp(HostName, "NULL") == 0)
+    {
+	if (gethostname(HostName, 200) != 0)
+	{
+	    error("Failed to obtain hostname\n");
+	}
+    }
+    if (strcmp(HostName, hname) == 0)
+    {
+	return(true);
+    }
+    return(false);
+}
+
+/*----------------------------------------------------------------------
+ * topaz	Routine to tell whether this is topaz....
+ *----------------------------------------------------------------------*/
+
+int topaz(void)
+{
+    return(ishost("topaz"))
+}
+
+/*----------------------------------------------------------------------
+ * mica		Routine to tell whether this is mica....
+ *----------------------------------------------------------------------*/
+
+int mica(void)
+{
+    return(ishost("mica"))
+}
+
+/*----------------------------------------------------------------------
+ * rock		Routine to tell whether this is rock....
+ *----------------------------------------------------------------------*/
+
+int rock(void)
+{
+    return(ishost("rock"))
+}
 
 /*----------------------------------------------------------------------
  * strlastcmp	Compare the ends of two strings
