@@ -4,15 +4,123 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.1 1998/07/25 14:35:51 cmb Exp $
+ * $Id: Curses.c,v 1.2 1999/05/12 16:01:17 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.2  1999/05/12 16:01:17  cmb
+ * Updated to have more of the curses initialisation code "canned" here.
+ *
  * Revision 1.1  1998/07/25 14:35:51  cmb
  * Initial revision
  *
  *----------------------------------------------------------------------*/
 
 #include <cmb.h>
+
+/*----------------------------------------------------------------------
+ * StartCurses	Routine to do what I normally do when I am starting a
+ *		curses application. If I want to do other initialisation,
+ *		then I'll have to craft my own...
+ *----------------------------------------------------------------------*/
+
+void StartCurses(void)
+{
+    	/*--------------------------------------------------------------
+	 * Now initialise the curses stuff... Yucky loads of error 
+	 * handling!
+	 *--------------------------------------------------------------*/
+
+    if ((Screen = initscr()) == NULL)
+    {
+        error("Failed to initialise ncurses\n");
+    }
+    inside_curses = TRUE;
+    if (raw() == ERR)
+    {
+        error("Failed to enter RAW mode\n");
+    }
+    if (noecho() == ERR)
+    {
+        error("Failed to enter NOECHO mode\n");
+    }
+    if (nonl() == ERR)
+    {
+        error("Failed to enter NONL mode\n");
+    }
+    if (cbreak() == ERR)
+    {
+        error("Failed to enter CBREAK mode\n");
+    }
+    
+    if (keypad(Screen, TRUE) == ERR)
+    {
+        error("Failed to enter KEYPAD mode\n");
+    }
+    if (start_color() == ERR)
+    {
+        error("Failed to start up colour processing\n");
+    }
+    start_color();
+    
+    if ((LINES < 24) || (COLS != 80))
+    {
+        error("Illegal number of lines (%d) or columns (%d)\n", 
+              LINES, COLS);
+    }
+
+    /*------------------------------------------------------------------
+     * Now code to initialise the colour pairs to be used.
+     *------------------------------------------------------------------*/
+
+    if (init_pair(BLACK_ON_WHITE, COLOR_BLACK, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : BLACK_ON_WHITE\n");
+    }
+    if (init_pair(RED_ON_WHITE, COLOR_RED, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : RED_ON_WHITE\n");
+    }
+    if (init_pair(BLUE_ON_WHITE, COLOR_BLUE, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : BLUE_ON_WHITE\n");
+    }
+    if (init_pair(GREEN_ON_WHITE, COLOR_GREEN, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : GREEN_ON_WHITE\n");
+    }
+    if (init_pair(YELLOW_ON_WHITE, COLOR_YELLOW, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : YELLOW_ON_WHITE\n");
+    }
+    if (init_pair(MAGENTA_ON_WHITE, COLOR_MAGENTA, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : MAGENTA_ON_WHITE\n");
+    }
+    if (init_pair(CYAN_ON_WHITE, COLOR_CYAN, COLOR_WHITE) == ERR)
+    {
+        error("Failed to initialise colour pair : CYAN_ON_WHITE\n");
+    }
+    attrset(A_NORMAL | COLOR_PAIR(BLACK_ON_WHITE));
+}
+
+/*----------------------------------------------------------------------
+ * Routine to jump out of curses and reset things.
+ *----------------------------------------------------------------------*/
+
+void StopCurses(void)
+{
+    clear();
+    refresh();
+    endwin();
+    inside_curses = FALSE;
+    
+    fputc(27,  stdout);		/* This stuff resets foreground and	*/
+    fputc('[', stdout);		/* background to black and white	*/
+    fputc('0', stdout);		/* respectively - for use in xterms	*/
+    fputc('0', stdout);		/* and on the console really....	*/
+    fputc('m', stdout);
+}
+
 
 /*----------------------------------------------------------------------
  * get_string	Get a string of text, doing my own editing!
