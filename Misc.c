@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.26 2019/01/21 12:00:27 cmb Exp $
+ * $Id: Misc.c,v 1.27 2019/01/21 19:27:51 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.27  2019/01/21 19:27:51  cmb
+ * Generalised the code for generating a HostNumber, so it just lifts
+ * names from the constant array defined in cmb.c...
+ *
  * Revision 1.26  2019/01/21 12:00:27  cmb
  * Added proper 'void' to function definition
  *
@@ -117,21 +121,12 @@ void gethostnumber(void)
 	    error("Failed to obtain hostname\n");
 	}
     }
-    if (strcmp(HostName, "rock") == 0)
+    for (i = 0; i <= HOST_LAST; i++)
     {
-	HostNumber = HOST_ROCK;
-    }
-    else if (strcmp(HostName, "mica") == 0)
-    {
-	HostNumber = HOST_MICA;
-    }
-    else if (strcmp(HostName, "opal") == 0)
-    {
-	HostNumber = HOST_OPAL;
-    }
-    else if (strcmp(HostName, "agate") == 0)
-    {
-	HostNumber = HOST_AGATE;
+	if (strcmp(HostName, HostNames[i]) == 0)
+	{
+	    HostNumber = i;
+	}
     }
 }
 
