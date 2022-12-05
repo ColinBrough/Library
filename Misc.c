@@ -3,9 +3,15 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.31 2021/04/19 13:29:52 cmb Exp $
+ * $Id: Misc.c,v 1.32 2021/04/19 20:58:55 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.32  2021/04/19 20:58:55  cmb
+ * Fixed the random number generating function so it is properly random -
+ * to do with where the pseudo random number generator behind 'rand()'
+ * gets its seed from. So now using what is ultimately /dev/urandom, via
+ * 'getrandom()'.
+ *
  * Revision 1.31  2021/04/19 13:29:52  cmb
  * Added an int_center routine to return a string representing an
  * integer, centred in a string of a given length and padded with given
@@ -117,6 +123,7 @@
  *
  *----------------------------------------------------------------------*/
 
+#include <sys/random.h>
 #include "cmb.h"
 
 /*----------------------------------------------------------------------
@@ -625,13 +632,24 @@ int Maximum(int a, int b)
 }
 
 /*----------------------------------------------------------------------
- * RandomInt	Routine to generate a random integer within a given range
+ * RandomInt	Routine to generate a random integer within a given range.
+ *		Looks after seeding for itself, using getrandom, so 
+ *		program using this doesn't need to. And reseeds if used a 
+ *		lot (100x), to make even less predictable.
  *----------------------------------------------------------------------*/
 
 int RandomInt(int range_bottom, int range_top)
 {
+    static int TimesCalled = 0;
     int range_length, r, result;
 
+    if (TimesCalled == 0)
+    {
+	unsigned int seed;
+	getrandom(&seed, sizeof(unsigned int), 0);
+	srand(seed);
+    }
+    
     r = rand();
 
     if ((range_top < range_bottom) ||
@@ -644,6 +662,11 @@ int RandomInt(int range_bottom, int range_top)
     result = (int) rint((((float) r / (float) RAND_MAX) * (float) range_length)
                         + (float) range_bottom);
     if (result == range_top) result = range_bottom;
+    TimesCalled++;
+    if (TimesCalled > 100)
+    {
+	TimesCalled = 0;
+    }
     return(result);
 }
 
