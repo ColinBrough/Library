@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.18 2015/05/21 11:54:39 cmb Exp $
+ * $Id: Misc.c,v 1.19 2015/05/21 12:10:26 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.19  2015/05/21 12:10:26  cmb
+ * Added routine to return the ordinal indicator as a string (1st, 2nd,
+ * 3rd etc...)
+ *
  * Revision 1.18  2015/05/21 11:54:39  cmb
  * Added routines to return the day of the week name of a given date
  *
@@ -431,6 +435,27 @@ char *DayNameLong(int year, int month, int day)
 char *DayNameShort(int year, int month, int day)
 {
     return(WeekNamesShort[DaysSinceSunday(year, month, day)]);
+}
+
+/*----------------------------------------------------------------------
+ * FirstSecondThird	Return suffix to numeric when written out for "1st", "2nd", "3rd"
+ *----------------------------------------------------------------------*/
+
+char *FirstSecondThird(int i)
+{
+    if ( ((i % 10) == 1) && (i != 11) )
+    {
+	return("st");
+    }
+    if ( ((i % 10) == 2) && (i != 12) )
+    {
+	return("nd");
+    }
+    if ( ((i % 10) == 3) && (i != 13) )
+    {
+	return("rd");
+    }
+    return("th");
 }
 
 /*----------------------------------------------------------------------
