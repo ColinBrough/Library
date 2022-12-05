@@ -4,9 +4,13 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.13 2019/01/09 17:01:24 cmb Exp $
+ * $Id: FileUtils.c,v 1.14 2019/05/02 21:37:44 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.14  2019/05/02 21:37:44  cmb
+ * Added routines to check for the existence of directories and "regular"
+ * objects (files, directories and symlinks).
+ *
  * Revision 1.13  2019/01/09 17:01:24  cmb
  * Added a file-existence check routine - checks for regular files
  *
@@ -215,6 +219,44 @@ int IsFile(char *f)
 	return(true);	/* Its a regular file */
     }
     return(false);	/* Its not a regular file, but does exists - link, directory... */
+}
+
+/*----------------------------------------------------------------------
+ * IsDir	Does the filename point to a directory?
+ *----------------------------------------------------------------------*/
+
+int IsDir(char *f)
+{
+    struct stat sbuf;
+
+    if (stat(f, &sbuf) == -1)	/* It doesn't exist at all */
+    {
+        return(false);
+    }
+    if (S_ISDIR(sbuf.st_mode))
+    {
+	return(true);	/* Its a directory */
+    }
+    return(false);	/* Its not a directory, but does exist - link, regular file... */
+}
+
+/*----------------------------------------------------------------------
+ * IsExisting	Does the filename point to an existing file or directory?
+ *----------------------------------------------------------------------*/
+
+int IsExisting(char *f)
+{
+    struct stat sbuf;
+
+    if (stat(f, &sbuf) == -1)	/* It doesn't exist at all */
+    {
+        return(false);
+    }
+    if (S_ISDIR(sbuf.st_mode) || S_ISREG(sbuf.st_mode) || S_ISLNK(sbuf.st_mode))
+    {
+	return(true);	/* It exists and is a file, directory or symlink */
+    }
+    return(false);	/* Its not a file, directory or symlink, but does exist - device, pipe, socket... */
 }
 
 /*----------------------------------------------------------------------
