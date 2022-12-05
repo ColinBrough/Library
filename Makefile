@@ -3,7 +3,7 @@
 #	Makefile for my library of useful C routines directory.
 #
 #----------------------------------------------------------------------
-# $Id: Makefile,v 1.12 2017/10/02 09:06:14 cmb Exp $
+# $Id: Makefile,v 1.13 2021/03/25 19:21:20 cmb Exp $
 #----------------------------------------------------------------------
 
 INCDIR		= /home/cmb/include
@@ -13,11 +13,12 @@ CFLAGS		= -g -Wall -I. -fPIC
 LDFLAGS		= -L$(LIBDIR)
 LOADLIBES	= -lcmb
 
-OBJS	= FileUtils.o	\
-	  Curses.o	\
-	  Colours.o	\
-	  Misc.o	\
-	  Images.o	\
+OBJS	= FileUtils.o		\
+	  Curses.o		\
+	  CursesLargeFont.o	\
+	  Colours.o		\
+	  Misc.o		\
+	  Images.o		\
 	  cmb.o
 
 all:	cmb.a
