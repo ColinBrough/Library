@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.28 2009/08/12 20:28:53 cmb Exp $
+ * $Id: cmb.h,v 1.29 2012/08/23 20:19:58 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.29  2012/08/23 20:19:58  cmb
+ * Added extra date handling utility routines
+ *
  * Revision 1.28  2009/08/12 20:28:53  cmb
  * Updated
  *
@@ -264,4 +267,7 @@ int DaysInYear(int year);
 float DateAsFloat(int year, int month, int day);
 int DaysSinceFirstJan(int year, int month, int day);
 int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2);
+int DaysSinceSunday(int year, int month, int day);
+int DaysSinceMonday(int year, int month, int day);
+int IsDate(int year, int month, int day);
 int Minimum(int a, int b);
