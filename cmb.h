@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.44 2016/06/16 16:57:57 cmb Exp $
+ * $Id: cmb.h,v 1.45 2016/08/09 12:51:16 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.45  2016/08/09 12:51:16  cmb
+ * Summary: Updated
+ *
  * Revision 1.44  2016/06/16 16:57:57  cmb
  * Summary: Added header for routine to read integer from a file
  *
@@ -303,6 +306,7 @@ FileDes *MapFile(const char *filename, const char *path);
 void UnmapFile(FileDes *f);
 int IsNewerN(char *f1, char *f2);
 int ReadIntFromFile(char *fname);
+void CreateDirectoryPath(char *pathname);
 
 /*----------------------------------------
  * Curses.c
