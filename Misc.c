@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.28 2019/01/21 19:29:47 cmb Exp $
+ * $Id: Misc.c,v 1.29 2019/04/17 16:03:30 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.29  2019/04/17 16:03:30  cmb
+ * Removed call to 'srand' to seed the random number generator, since
+ * 'time' is actually a poor seed when called repeatedly...
+ *
  * Revision 1.28  2019/01/21 19:29:47  cmb
  * Fixed missing variable declaration
  *
@@ -601,10 +605,7 @@ int Minimum(int a, int b)
 int RandomInt(int range_bottom, int range_top)
 {
     int range_length, r, result;
-    time_t t;
 
-    t = time(NULL);
-    srand(t);
     r = rand();
 
     if ((range_top < range_bottom) ||
