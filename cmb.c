@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.1 1998/07/25 17:36:14 cmb Exp $
+ * $Id: cmb.c,v 1.2 1998/07/25 17:38:50 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.2  1998/07/25 17:38:50  cmb
+ * Updated.
+ *
  * Revision 1.1  1998/07/25 17:36:14  cmb
  * Initial revision
  *
@@ -15,3 +18,4 @@
 #include <cmb.h>
 
 int inside_curses = false;	/* Flag indicating whether in curses	*/
+FILE *tfile = NULL;		/* Trace file				*/
