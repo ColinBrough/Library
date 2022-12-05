@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.17 2020/03/03 21:14:14 cmb Exp $
+ * $Id: FileUtils.c,v 1.18 2020/05/28 19:29:11 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.18  2020/05/28 19:29:11  cmb
+ * Added file compare function
+ *
  * Revision 1.17  2020/03/03 21:14:14  cmb
  * Clarified commenting!
  *
@@ -405,4 +408,23 @@ void CopyFile(char *src, char *dest)
     close(input);
     close(output);
 }
+
+/*----------------------------------------------------------------------
+ * CmpFile	The equivalent of the command 'cmp'... meaning of return
+ *		value is same as 'strcmp'...
+ *----------------------------------------------------------------------*/
+
+int CmpFile(char *src, char *dest)
+{
+    FileDes *Fsrc, *Fdest;
+    int compared;
+    
+    Fsrc  = MapFile(src,  NULL);
+    Fdest = MapFile(dest, NULL);
+    compared = strcmp(Fsrc->page, Fdest->page);
+    UnMapFile(Fdest);
+    UnMapFile(Fsrc);
+    return(compared);
+}
+
 /*----------------------------------------------------------------------*/
