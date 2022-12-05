@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.56 2019/02/11 14:57:26 cmb Exp $
+ * $Id: cmb.h,v 1.57 2019/05/02 21:37:03 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.57  2019/05/02 21:37:03  cmb
+ * Updated
+ *
  * Revision 1.56  2019/02/11 14:57:26  cmb
  * Updated list of known hostnames
  *
@@ -356,6 +359,8 @@ FileDes *MapFile(const char *filename, const char *path);
 void UnmapFile(FileDes *f);
 int IsNewerN(char *f1, char *f2);
 int IsFile(char *f);
+int IsDir(char *f);
+int IsExisting(char *f);
 int ReadIntFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
 
