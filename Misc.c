@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.12 2013/01/30 15:48:20 cmb Exp $
+ * $Id: Misc.c,v 1.13 2013/09/15 22:41:53 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.13  2013/09/15 22:41:53  cmb
+ * Updated
+ *
  * Revision 1.12  2013/01/30 15:48:20  cmb
  * Added FloatAsDate - routine to convert a year.proportion of a year to
  * an approximate dd/mm/yyyy format...
@@ -256,6 +259,50 @@ int DaysSinceMonday(int year, int month, int day)
 	d = 6;
     }
     return(d);
+}
+
+/*----------------------------------------------------------------------
+ * AddDaysTo	Calculate the date resulting from adding XX days to a
+ *		given date...
+ *----------------------------------------------------------------------*/
+
+void AddDaysTo(int *Year, int *Month, int *Day, int Days)
+{
+    int i;
+    if (abs(Days) == Days)	/* Its positive */
+    {
+	for (i = 0; i < Days; i++)
+	{
+	    (*Day)++;
+	    if (*Day > DaysInMonth(*Year, *Month))
+	    {
+		*Day = 1;
+		(*Month)++;
+		if (*Month > 12)
+		{
+		    *Month = 1;
+		    (*Year)++;
+		}
+	    }
+	}
+    }
+    else			/* Its negative */
+    {
+	for (i = 0; i < abs(Days); i++)
+	{
+	    (*Day)--;
+	    if (*Day < 1)
+	    {
+		(*Month)--;
+		if (*Month < 1)
+		{
+		    *Month = 12;
+		    (*Year)--;
+		}
+		*Day = DaysInMonth(*Year, *Month);
+	    }
+	}
+    }
 }
 
 /*----------------------------------------------------------------------
