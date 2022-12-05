@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.74 2021/07/29 21:03:26 cmb Exp $
+ * $Id: cmb.h,v 1.75 2021/08/02 14:14:17 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.75  2021/08/02 14:14:17  cmb
+ * Updated
+ *
  * Revision 1.74  2021/07/29 21:03:26  cmb
  * Added qsort suitable string comparison function
  *
@@ -434,6 +437,7 @@ int  get_string(char *result, int y, int x, int maxlen, int up_down);
 void large_num(int x, int y, int digit);
 void CtrText(int line, char *string);
 void CtrLine(int line, int len);
+void cleartospace();
 
 /*----------------------------------------------------------------------
  * CursesLargeFont.c	Static array with definition for a large font to 
