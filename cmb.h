@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.53 2019/01/21 19:09:23 cmb Exp $
+ * $Id: cmb.h,v 1.54 2019/01/21 19:25:36 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.54  2019/01/21 19:25:36  cmb
+ * Updated hosts constants, and added new "HostNames" array
+ *
  * Revision 1.53  2019/01/21 19:09:23  cmb
  * Updated
  *
@@ -271,7 +274,9 @@
 }
 
 /*----------------------------------------------------------------------
- * Some constants to represent particular hosts
+ * Some constants to represent particular hosts; probably rarely used;
+ * risk is this gets out of sync with list of hosts defined in cmb.c for
+ * array HostNames[i]...
  *----------------------------------------------------------------------*/
 
 #define HOST_ROCK  0
@@ -279,7 +284,8 @@
 #define HOST_OPAL  2
 #define HOST_AGATE 3
 #define HOST_TOPAZ 4
-#define HOST_LAST  4 /* Update whenever a new host is added */
+#define HOST_LAST  4	/* Update whenever a new host is added		*/
+#define NUMHOSTS   8	/* Max number of hosts this code can handle	*/
 
 /*----------------------------------------------------------------------
  * Type definitions
@@ -309,6 +315,7 @@ extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
 extern char HostName[200];	/* Hostname				*/
+extern char *HostNames[NUMHOSTS];		/* 
 extern int HostNumber;		/* A number for the current host	*/
 
 extern char *MonthNamesLong[13];	/* Names of the months		*/
