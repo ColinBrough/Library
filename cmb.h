@@ -5,9 +5,13 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.6 1998/08/04 19:13:31 cmb Exp $
+ * $Id: cmb.h,v 1.7 1998/08/04 22:15:24 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.7  1998/08/04 22:15:24  cmb
+ * Updated so that a couple of functions properly describe things that
+ * they only use as input as 'const'.
+ *
  * Revision 1.6  1998/08/04 19:13:31  cmb
  * Redid definition of MapFile to match changes in FileUtils.c allowing
  * an optional path to be passed in to construct the path, via the stdarg
@@ -143,9 +147,9 @@ map_file(FileDes *f);
 void
 unmap_file(FileDes *f);
 void
-copy_file(FILE *outs, char *infname);
+copy_file(FILE *outs, const char *infname);
 FileDes *
-MapFile(char *filename, ...);
+MapFile(const char *filename, ...);
 void
 UnmapFile(FileDes *f);
 
