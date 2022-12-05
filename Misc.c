@@ -3,9 +3,14 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.29 2019/04/17 16:03:30 cmb Exp $
+ * $Id: Misc.c,v 1.30 2021/01/11 15:04:16 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.30  2021/01/11 15:04:16  cmb
+ * Added a "Maximum" function to return the larger of two integers.
+ * There is also an unused space for a routine to return the number of
+ * years, months, days between two times - not implemented.
+ *
  * Revision 1.29  2019/04/17 16:03:30  cmb
  * Removed call to 'srand' to seed the random number generator, since
  * 'time' is actually a poor seed when called repeatedly...
@@ -329,6 +334,13 @@ int DaysSinceFirstJan(int year, int month, int day)
 }
 
 /*----------------------------------------------------------------------
+ * ReturnBetween	Routine to compute the number of years/months/days
+ *			between two times
+ *----------------------------------------------------------------------*/
+
+/* void ReturnBetween() */
+
+/*----------------------------------------------------------------------
  * MonthsBetween	Routine to compute the number of days between
  *			two months
  *----------------------------------------------------------------------*/
@@ -596,6 +608,15 @@ char *FirstSecondThird(int i)
 int Minimum(int a, int b)
 {
     return((a < b) ? a : b);
+}
+
+/*----------------------------------------------------------------------
+ * Maximum	Routine to return the larger of two integers
+ *----------------------------------------------------------------------*/
+
+int Maximum(int a, int b)
+{
+    return((a > b) ? a : b);
 }
 
 /*----------------------------------------------------------------------
