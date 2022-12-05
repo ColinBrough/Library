@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.3 1998/07/25 17:40:35 cmb Exp $
+ * $Id: cmb.h,v 1.4 1998/07/25 17:43:13 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.4  1998/07/25 17:43:13  cmb
+ * Removed redundant true/false definitions.
+ *
  * Revision 1.3  1998/07/25 17:40:35  cmb
  * A few #defines for use by curses programs, macros to aid tracing, and
  * a couple of global variables - one the FILE * for the tracing macros,
@@ -35,13 +38,6 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <ncurses.h>
-
-#ifndef true
-#define true     1
-#endif
-#ifndef false
-#define false    0
-#endif
 
 /*----------------------------------------------------------------------
  * Some common ncurses defines, to save space in the application specific
