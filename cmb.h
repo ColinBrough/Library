@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.68 2021/04/19 11:51:25 cmb Exp $
+ * $Id: cmb.h,v 1.69 2021/04/19 13:30:11 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.69  2021/04/19 13:30:11  cmb
+ * Added int_center function header
+ *
  * Revision 1.68  2021/04/19 11:51:25  cmb
  * Added function to return a centred string in newly allocated memory
  * (should be free'd once used).
@@ -471,6 +474,7 @@ int Minimum(int a, int b);
 int Maximum(int a, int b);
 int RandomInt(int range_bottom, int range_top);
 char *str_center(char str[], unsigned int new_length, char placeholder);
+char *int_center(int value, unsigned int new_length, char paddingchar);
 
 /*----------------------------------------
  * Images.c
