@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.15 2019/12/16 19:07:36 cmb Exp $
+ * $Id: FileUtils.c,v 1.16 2020/03/03 20:38:05 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.16  2020/03/03 20:38:05  cmb
+ * Added routine to return the FileSize, given the filename
+ *
  * Revision 1.15  2019/12/16 19:07:36  cmb
  * Added 'CopyFile' routine to mimic command line 'cp'...
  *
@@ -260,6 +263,25 @@ int IsExisting(char *f)
 	return(true);	/* It exists and is a file, directory or symlink */
     }
     return(false);	/* Its not a file, directory or symlink, but does exist - device, pipe, socket... */
+}
+
+/*----------------------------------------------------------------------
+ * IsExisting	Does the filename point to an existing file or directory?
+ *----------------------------------------------------------------------*/
+
+int FileSize(char *f)
+{
+    struct stat sbuf;
+
+    if (stat(f, &sbuf) == -1)	/* It doesn't exist at all */
+    {
+        return(-1);
+    }
+    if (S_ISREG(sbuf.st_mode))
+    {
+	return(sbuf.st_size);	/* Return file size */
+    }
+    return(-1);	/* Its not a regular file, so return -1 */
 }
 
 /*----------------------------------------------------------------------
