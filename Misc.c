@@ -3,9 +3,13 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.15 2013/09/19 11:46:57 cmb Exp $
+ * $Id: Misc.c,v 1.16 2014/12/22 15:09:36 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.16  2014/12/22 15:09:36  cmb
+ * Added code to compare the start of two strings (up to the length of
+ * the shorter string).
+ *
  * Revision 1.15  2013/09/19 11:46:57  cmb
  * Fixed typo bug
  *
@@ -125,6 +129,17 @@ int strlastcmp(char *s1, char *s2)
         s1 = s1 + (l1 - l2);
     }
     return(strcmp(s1, s2));
+}
+
+/*----------------------------------------------------------------------
+ * strfirstcmp	Compare the start of two strings, up to length of shortest
+ *----------------------------------------------------------------------*/
+
+int strfirstcmp(char *s1, char *s2)
+{
+    int l;
+    l = Minimum(strlen(s1), strlen(s2));
+    return(strncmp(s1, s2, l));
 }
 
 /*----------------------------------------------------------------------
