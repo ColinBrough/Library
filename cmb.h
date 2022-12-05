@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.49 2019/01/21 11:44:10 cmb Exp $
+ * $Id: cmb.h,v 1.50 2019/01/21 11:48:01 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.50  2019/01/21 11:48:01  cmb
+ * Added the host number variable
+ *
  * Revision 1.49  2019/01/21 11:44:10  cmb
  * Added hostnumber constants
  *
@@ -295,6 +298,7 @@ extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
 extern char HostName[200];	/* Hostname				*/
+extern int HostNumber;		/* A number for the current host	*/
 
 extern char *MonthNamesLong[13];	/* Names of the months		*/
 extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
