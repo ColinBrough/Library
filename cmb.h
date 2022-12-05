@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.13 1999/05/12 16:01:12 cmb Exp $
+ * $Id: cmb.h,v 1.14 1999/08/17 12:25:36 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.14  1999/08/17 12:25:36  cmb
+ * Updated.
+ *
  * Revision 1.13  1999/05/12 16:01:12  cmb
  * Updated to have more of the curses initialisation code "canned" here.
  *
@@ -194,3 +197,4 @@ void bold_red(void);
 void green(void);
 void bold_green(void);
 void yellow(void);
+void cyan(void);
