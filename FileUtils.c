@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.16 2020/03/03 20:38:05 cmb Exp $
+ * $Id: FileUtils.c,v 1.17 2020/03/03 21:14:14 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.17  2020/03/03 21:14:14  cmb
+ * Clarified commenting!
+ *
  * Revision 1.16  2020/03/03 20:38:05  cmb
  * Added routine to return the FileSize, given the filename
  *
@@ -266,7 +269,7 @@ int IsExisting(char *f)
 }
 
 /*----------------------------------------------------------------------
- * IsExisting	Does the filename point to an existing file or directory?
+ * FileSize	Return the filesize if a regular file, and -1 otherwise
  *----------------------------------------------------------------------*/
 
 int FileSize(char *f)
