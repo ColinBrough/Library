@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.32 2013/01/30 14:06:24 cmb Exp $
+ * $Id: cmb.h,v 1.33 2013/03/15 09:30:40 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.33  2013/03/15 09:30:40  cmb
+ * Updated
+ *
  * Revision 1.32  2013/01/30 14:06:24  cmb
  * Updated
  *
@@ -229,6 +232,20 @@ extern char *MonthNamesLong[13];	/* Names of the months		*/
 extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
 extern char *WeekNamesLong[7];		/* Names of the months		*/
 extern char *WeekNamesShort[7];		/* Short form is 1st 3 chars	*/
+
+extern int ColoursInitialised;		/* Flag indicating whether colour strings (below)
+					 * have been initialised yet
+					 */
+extern char ColoursClearScr[8];
+extern char ColoursBlack[6];
+extern char ColoursRed[8];
+extern char ColoursBlue[8];
+extern char ColoursBoldBlue[8];
+extern char ColoursBoldRed[8];
+extern char ColoursGreen[8];
+extern char ColoursBoldGreen[8];
+extern char ColoursYellow[8];
+extern char ColoursCyan[8];
 
 /*----------------------------------------------------------------------
  * Now the headers for each of the available routines.
