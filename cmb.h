@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.25 2008/08/19 19:23:35 cmb Exp $
+ * $Id: cmb.h,v 1.26 2008/08/19 19:37:08 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.26  2008/08/19 19:37:08  cmb
+ * Reverted once I've found the right package!!
+ *
  * Revision 1.25  2008/08/19 19:23:35  cmb
  * Updated
  *
@@ -112,7 +115,7 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <signal.h>
-#include <ncursesw/ncurses.h>
+#include <ncurses.h>
 #include <time.h>
 #include <mntent.h>
 #include <pwd.h>
