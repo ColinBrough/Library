@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.26 2008/08/19 19:37:08 cmb Exp $
+ * $Id: cmb.h,v 1.27 2008/10/21 20:50:33 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.27  2008/10/21 20:50:33  cmb
+ * Updated
+ *
  * Revision 1.26  2008/08/19 19:37:08  cmb
  * Reverted once I've found the right package!!
  *
@@ -253,5 +256,8 @@ void cyan(void);
 int strlastcmp(char *s1, char *s2);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
 int DaysInMonth(int year, int month);
+int DaysInYear(int year);
 float DateAsFloat(int year, int month, int day);
+int DaysSinceFirstJan(int year, int month, int day);
+int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2);
 int Minimum(int a, int b);
