@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.27 2008/10/21 20:50:33 cmb Exp $
+ * $Id: cmb.h,v 1.28 2009/08/12 20:28:53 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.28  2009/08/12 20:28:53  cmb
+ * Updated
+ *
  * Revision 1.27  2008/10/21 20:50:33  cmb
  * Updated
  *
@@ -225,6 +228,7 @@ void unmap_file(FileDes *f);
 void copy_file(FILE *outs, const char *infname, const char *path);
 FileDes *MapFile(const char *filename, const char *path);
 void UnmapFile(FileDes *f);
+int IsNewerN(char *f1, char *f2);
 
 /*----------------------------------------
  * Curses.c
