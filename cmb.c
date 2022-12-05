@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.7 2012/08/24 09:33:58 cmb Exp $
+ * $Id: cmb.c,v 1.8 2013/03/15 09:28:49 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.8  2013/03/15 09:28:49  cmb
+ * Updated
+ *
  * Revision 1.7  2012/08/24 09:33:58  cmb
  * Updated
  *
@@ -48,3 +51,10 @@ char *WeekNamesLong[7] = { "Sunday", "Monday", "Tuesday", "Wednesday",
 			   "Thursday", "Friday", "Saturday" };
 
 char *WeekNamesShort[7] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+
+int ColoursInitialised = FALSE;	/* Flag indicating whether colour strings (below)
+				 * have been initialised yet
+				 */
+char ColoursClearScr[8], ColoursBlack[6], ColoursRed[8], ColoursBlue[8], 
+    ColoursBoldBlue[8], ColoursBoldRed[8], ColoursGreen[8], ColoursBoldGreen[8], 
+    ColoursYellow[8], ColoursCyan[8];
