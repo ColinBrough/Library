@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.23 2018/08/14 12:53:06 cmb Exp $
+ * $Id: Misc.c,v 1.24 2019/01/21 11:56:20 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.24  2019/01/21 11:56:20  cmb
+ * Added code to produce a HostNumber
+ *
  * Revision 1.23  2018/08/14 12:53:06  cmb
  * Added a routine to generate a random number between a top and a bottom
  * figure
@@ -89,18 +92,49 @@
 #include "cmb.h"
 
 /*----------------------------------------------------------------------
+ * gethostnumber	Routine to come up with a hostnumber from a 
+ *			defined list of hosts my code knows about, so I
+ *			sensibly index arrays by hostname...
+ *----------------------------------------------------------------------*/
+
+int gethostnumber()
+{
+    if (HostNumber == -1)
+    {
+	if (strcmp(HostName, "NULL") == 0)
+	{
+	    if (gethostname(HostName, 200) != 0)
+	    {
+		error("Failed to obtain hostname\n");
+	    }
+	}
+	if (strcmp(HostName, "rock") == 0)
+	{
+	    HostNumber = HOST_ROCK;
+	}
+	else if (strcmp(HostName, "mica") == 0)
+	{
+	    HostNumber = HOST_MICA;
+	}
+	else if (strcmp(HostName, "opal") == 0)
+	{
+	    HostNumber = HOST_OPAL;
+	}
+	else if (strcmp(HostName, "agate") == 0)
+	{
+	    HostNumber = HOST_AGATE;
+	}
+    }
+    return(HostNumber);
+}
+
+/*----------------------------------------------------------------------
  * ishost	Routine to tell whether this is the named host....
  *----------------------------------------------------------------------*/
 
 int ishost(char *hname)
 {
-    if (strcmp(HostName, "NULL") == 0)
-    {
-	if (gethostname(HostName, 200) != 0)
-	{
-	    error("Failed to obtain hostname\n");
-	}
-    }
+    gethostnumber();
     if (strcmp(HostName, hname) == 0)
     {
 	return(true);
