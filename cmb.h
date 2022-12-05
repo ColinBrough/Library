@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.57 2019/05/02 21:37:03 cmb Exp $
+ * $Id: cmb.h,v 1.58 2019/12/16 16:43:07 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.58  2019/12/16 16:43:07  cmb
+ * Added CopyFile - equivalent of 'cp' on the command-line
+ *
  * Revision 1.57  2019/05/02 21:37:03  cmb
  * Updated
  *
@@ -201,6 +204,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <sys/sendfile.h>
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -363,6 +367,7 @@ int IsDir(char *f);
 int IsExisting(char *f);
 int ReadIntFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
+void CopyFile(char *src, char *dest);
 
 /*----------------------------------------
  * Curses.c
