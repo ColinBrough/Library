@@ -3,13 +3,13 @@
 #	Makefile for my library of useful C routines directory.
 #
 #----------------------------------------------------------------------
-# $Id: Makefile,v 1.10 2016/08/09 12:53:20 cmb Exp $
+# $Id: Makefile,v 1.11 2016/08/09 15:51:04 cmb Exp $
 #----------------------------------------------------------------------
 
 INCDIR		= /home/cmb/include
 LIBDIR		= /home/cmb/lib
 CC		= gcc
-CFLAGS		= -g -Wall -Wno-deprecated-declarations -I.
+CFLAGS		= -g -Wall -I.
 LDFLAGS		= -L$(LIBDIR)
 LOADLIBES	= -lcmb
 
