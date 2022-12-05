@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.34 2013/03/15 09:55:20 cmb Exp $
+ * $Id: cmb.h,v 1.35 2013/03/18 12:03:29 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.35  2013/03/18 12:03:29  cmb
+ * Updated
+ *
  * Revision 1.34  2013/03/15 09:55:20  cmb
  * Updated
  *
@@ -236,9 +239,6 @@ extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
 extern char *WeekNamesLong[7];		/* Names of the months		*/
 extern char *WeekNamesShort[7];		/* Short form is 1st 3 chars	*/
 
-extern int ColoursInitialised;		/* Flag indicating whether colour strings (below)
-					 * have been initialised yet
-					 */
 extern char ColoursClearScr[8];
 extern char ColoursBlack[6];
 extern char ColoursRed[8];
@@ -277,7 +277,6 @@ int  get_string(char *result, int y, int x, int maxlen, int up_down);
  * Colours.c
  *----------------------------------------*/
 
-void ColoursInitialise(void);
 void clearscreen(void);
 void black(void);
 void red(void);
