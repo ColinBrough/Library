@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.12 2016/08/09 15:54:38 cmb Exp $
+ * $Id: FileUtils.c,v 1.13 2019/01/09 17:01:24 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.13  2019/01/09 17:01:24  cmb
+ * Added a file-existence check routine - checks for regular files
+ *
  * Revision 1.12  2016/08/09 15:54:38  cmb
  * Added a function to create a whole directory path
  *
@@ -193,6 +196,25 @@ int IsNewerN(char *f1, char *f2)
         error("Failed to stat file: %s\n", f2);
     }
     return(sbuf1.st_mtime > sbuf2.st_mtime);
+}
+
+/*----------------------------------------------------------------------
+ * IsFile	Does the filename point to an actual file?
+ *----------------------------------------------------------------------*/
+
+int IsFile(char *f)
+{
+    struct stat sbuf;
+
+    if (stat(f, &sbuf) == -1)	/* It doesn't exist at all */
+    {
+        return(false);
+    }
+    if (S_ISREG(sbuf.st_mode))
+    {
+	return(true);	/* Its a regular file */
+    }
+    return(false);	/* Its not a regular file, but does exists - link, directory... */
 }
 
 /*----------------------------------------------------------------------
