@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.59 2020/03/03 20:37:51 cmb Exp $
+ * $Id: cmb.h,v 1.60 2020/05/28 19:14:40 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.60  2020/05/28 19:14:40  cmb
+ * Updated
+ *
  * Revision 1.59  2020/03/03 20:37:51  cmb
  * Added FileSize header
  *
@@ -362,6 +365,7 @@ extern char ColoursCyan[8];
 void map_file(FileDes *f);
 void unmap_file(FileDes *f);
 void copy_file(FILE *outs, const char *infname, const char *path);
+void CopyFile(const char *infname, const char *outfname);
 FileDes *MapFile(const char *filename, const char *path);
 void UnmapFile(FileDes *f);
 int IsNewerN(char *f1, char *f2);
