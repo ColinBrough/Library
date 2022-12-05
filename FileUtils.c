@@ -4,9 +4,14 @@
  *			of my own library of useful stuff.
  *
  *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.5 1998/08/04 21:59:42 cmb Exp $
+ * $Id: FileUtils.c,v 1.6 1998/08/04 22:15:56 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.6  1998/08/04 22:15:56  cmb
+ * Updated a couple of the function definitions so that they properly
+ * label a couple of arguments that they use only as input with 'const',
+ * as they should.
+ *
  * Revision 1.5  1998/08/04 21:59:42  cmb
  * Removed development printing of progress output.
  *
@@ -84,7 +89,7 @@ unmap_file(FileDes *f)
  *----------------------------------------------------------------------*/
 
 void
-copy_file(FILE *outs, char *infname)
+copy_file(FILE *outs, const char *infname)
 {
     FileDes f;
 
@@ -103,7 +108,7 @@ copy_file(FILE *outs, char *infname)
  *----------------------------------------------------------------------*/
 
 FileDes *
-MapFile(char *filename, ...)
+MapFile(const char *filename, ...)
 {
     va_list ap;
     FileDes *f;
