@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.12 2019/01/21 19:26:54 cmb Exp $
+ * $Id: cmb.c,v 1.13 2019/02/11 14:57:17 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.13  2019/02/11 14:57:17  cmb
+ * Updated list of known hostnames
+ *
  * Revision 1.12  2019/01/21 19:26:54  cmb
  * Added array of hostnames
  *
@@ -51,7 +54,7 @@ WINDOW *Screen;			/* Curses window to use.		*/
 int inside_curses = FALSE;	/* Flag indicating whether in curses	*/
 FILE *tfile = NULL;		/* Trace file				*/
 char HostName[200] = "NULL";	/* A blank value to start with...	*/
-char *HostNames[NUMHOSTS] = { "rock", "mica", "opal", "agate", "topaz", NULL, NULL, NULL };
+char *HostNames[NUMHOSTS] = { "rock", "mica", "opal", "agate", "topaz", "stone", NULL, NULL };
 				/* List of hostnames here needs to be kept
 				 * in sync with list of defines in cmb.h */
 
