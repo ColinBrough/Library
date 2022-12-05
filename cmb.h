@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.61 2020/05/28 19:16:16 cmb Exp $
+ * $Id: cmb.h,v 1.62 2020/05/28 19:29:28 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.62  2020/05/28 19:29:28  cmb
+ * Updated
+ *
  * Revision 1.61  2020/05/28 19:16:16  cmb
  * Removed mistakenly added prototype
  *
@@ -378,6 +381,7 @@ int FileSize(char *f);
 int ReadIntFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
 void CopyFile(char *src, char *dest);
+int CmpFile(char *src, char *dest);
 
 /*----------------------------------------
  * Curses.c
