@@ -3,7 +3,7 @@
 #	Makefile for my library of useful C routines directory.
 #
 #----------------------------------------------------------------------
-# $Id: Makefile,v 1.7 2000/05/09 20:24:31 cmb Exp $
+# $Id: Makefile,v 1.8 2002/12/18 16:25:33 cmb Exp $
 #----------------------------------------------------------------------
 
 INCDIR		= /home/cmb/include
@@ -30,5 +30,5 @@ clean:
 	rm -f $(OBJS) *~ *.o *.a
 
 install	: all
-	cp cmb.h $(INCDIR)
-	cp cmb.a $(LIBDIR)/libcmb.a
+	cp -f cmb.h $(INCDIR)
+	cp -f cmb.a $(LIBDIR)/libcmb.a
