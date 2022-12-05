@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.62 2020/05/28 19:29:28 cmb Exp $
+ * $Id: cmb.h,v 1.63 2021/01/11 15:02:38 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.63  2021/01/11 15:02:38  cmb
+ * Updated
+ *
  * Revision 1.62  2020/05/28 19:29:28  cmb
  * Updated
  *
@@ -436,6 +439,7 @@ char *DayNameShort(int year, int month, int day);
 int ToUTC(int Year, int Month, int Day, int Hour);
 char *FirstSecondThird(int i);
 int Minimum(int a, int b);
+int Maximum(int a, int b);
 int RandomInt(int range_bottom, int range_top);
 
 /*----------------------------------------
