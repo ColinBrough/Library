@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.18 2020/05/28 19:29:11 cmb Exp $
+ * $Id: FileUtils.c,v 1.19 2020/05/28 19:30:05 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.19  2020/05/28 19:30:05  cmb
+ * Fixed typo
+ *
  * Revision 1.18  2020/05/28 19:29:11  cmb
  * Added file compare function
  *
@@ -422,8 +425,8 @@ int CmpFile(char *src, char *dest)
     Fsrc  = MapFile(src,  NULL);
     Fdest = MapFile(dest, NULL);
     compared = strcmp(Fsrc->page, Fdest->page);
-    UnMapFile(Fdest);
-    UnMapFile(Fsrc);
+    UnmapFile(Fdest);
+    UnmapFile(Fsrc);
     return(compared);
 }
 
