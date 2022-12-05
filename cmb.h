@@ -5,9 +5,15 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.2 1998/07/25 14:36:27 cmb Exp $
+ * $Id: cmb.h,v 1.3 1998/07/25 17:40:35 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.3  1998/07/25 17:40:35  cmb
+ * A few #defines for use by curses programs, macros to aid tracing, and
+ * a couple of global variables - one the FILE * for the tracing macros,
+ * and the other an integer variable indicating whether we are currently
+ * inside curses.
+ *
  * Revision 1.2  1998/07/25 14:36:27  cmb
  * Added another function header.
  *
@@ -38,6 +44,20 @@
 #endif
 
 /*----------------------------------------------------------------------
+ * Some common ncurses defines, to save space in the application specific
+ * header files.
+ *----------------------------------------------------------------------*/
+
+#define WHITE_ON_BLACK  0
+#define BLACK_ON_WHITE  1
+#define RED_ON_WHITE    2
+#define BLUE_ON_WHITE   3
+#define GREEN_ON_WHITE  4
+#define YELLOW_ON_WHITE 5
+#define MAGENTA_ON_WHITE 6
+#define CYAN_ON_WHITE   7
+
+/*----------------------------------------------------------------------
  * A fancy error reporting macro - doubt this will work except with gcc!
  * It prints the line number and file along with the actual error, which
  * can be a 'printf' style parameter string with arguments... Note how it
@@ -63,6 +83,27 @@
 }
 
 /*----------------------------------------------------------------------
+ * Macros to aid with tracing what is going on by doing flushed prints
+ * to a TRACEFILE.
+ *----------------------------------------------------------------------*/
+
+#define tracestart \
+{\
+        tfile = fopen("TRACEFILE", "w");\
+        fprintf(tfile, "Trace starts\n");\
+}
+
+#define traceend   { fprintf(tfile, "Trace ends\n"); fclose(tfile); }
+
+#define tracer( format, args...) \
+{\
+        fprintf(tfile, "%18s %5d ", __FILE__, __LINE__);\
+        fprintf(tfile, format, ##args);\
+        fflush(tfile);\
+}
+
+
+/*----------------------------------------------------------------------
  * Type definitions
  *----------------------------------------------------------------------*/
  
@@ -74,6 +115,13 @@ typedef struct FileDes
     int file_descriptor;
     FILE *file;
 } FileDes;
+
+/*----------------------------------------------------------------------
+ * OK, so globals are bad form in a library, but handy...
+ *----------------------------------------------------------------------*/
+
+extern int inside_curses;       /* Flag indicating whether in curses    */
+extern FILE *tfile;		/* Trace file				*/
 
 /*----------------------------------------------------------------------
  * Now the headers for each of the available routines.
