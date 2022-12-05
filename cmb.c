@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.5 2005/06/01 19:19:53 cmb Exp $
+ * $Id: cmb.c,v 1.6 2012/08/24 09:32:31 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.6  2012/08/24 09:32:31  cmb
+ * Updated
+ *
  * Revision 1.5  2005/06/01 19:19:53  cmb
  * Updated woth names of the months stuff
  *
@@ -37,3 +40,8 @@ char *MonthNamesLong[13] = { NULL, "January", "February", "March", "April",
 char *MonthNamesShort[13] = { NULL, "Jan", "Feb", "Mar", "Apr", "May",
 			      "Jun", "Jul", "Aug", "Sep", "Oct",
 			      "Nov", "Dec" };
+
+char WeekNamesLong[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", 
+			  "Thursday", "Friday", "Saturday" };
+
+char WeekNamesShort[7] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
