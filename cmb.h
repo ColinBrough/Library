@@ -5,9 +5,14 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.5 1998/08/04 18:21:58 cmb Exp $
+ * $Id: cmb.h,v 1.6 1998/08/04 19:13:31 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.6  1998/08/04 19:13:31  cmb
+ * Redid definition of MapFile to match changes in FileUtils.c allowing
+ * an optional path to be passed in to construct the path, via the stdarg
+ * mechanism.
+ *
  * Revision 1.5  1998/08/04 18:21:58  cmb
  * Added headers for two slightly higher level wrapper functions round
  * the file mapping and unmapping code, making it slightly easier to use
@@ -31,6 +36,7 @@
  *----------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -104,7 +110,6 @@
         fflush(tfile);\
 }
 
-
 /*----------------------------------------------------------------------
  * Type definitions
  *----------------------------------------------------------------------*/
@@ -140,7 +145,7 @@ unmap_file(FileDes *f);
 void
 copy_file(FILE *outs, char *infname);
 FileDes *
-MapFile(char *filename);
+MapFile(char *filename, ...);
 void
 UnmapFile(FileDes *f);
 
