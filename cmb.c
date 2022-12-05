@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.4 1999/05/12 16:01:06 cmb Exp $
+ * $Id: cmb.c,v 1.5 2005/06/01 19:19:53 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.5  2005/06/01 19:19:53  cmb
+ * Updated woth names of the months stuff
+ *
  * Revision 1.4  1999/05/12 16:01:06  cmb
  * Updated to have more of the curses initialisation code "canned" here.
  *
@@ -26,3 +29,11 @@
 WINDOW *Screen;			/* Curses window to use.		*/
 int inside_curses = FALSE;	/* Flag indicating whether in curses	*/
 FILE *tfile = NULL;		/* Trace file				*/
+
+char *MonthNamesLong[13] = { NULL, "January", "February", "March", "April", 
+			     "May", "June", "July", "August", "September", 
+			     "October", "November", "December" };
+
+char *MonthNamesShort[13] = { NULL, "Jan", "Feb", "Mar", "Apr", "May",
+			      "Jun", "Jul", "Aug", "Sep", "Oct",
+			      "Nov", "Dec" };
