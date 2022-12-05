@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.10 1998/08/21 20:51:04 cmb Exp $
+ * $Id: cmb.h,v 1.11 1999/01/22 16:59:43 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.11  1999/01/22 16:59:43  cmb
+ * Updated.
+ *
  * Revision 1.10  1998/08/21 20:51:04  cmb
  * Updated so now doesn't use varargs, but assumes that the path will
  * come in NULL when no path has to be prepended to a filename to be
@@ -57,6 +60,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <ctype.h>
