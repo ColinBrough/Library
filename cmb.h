@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.51 2019/01/21 12:00:00 cmb Exp $
+ * $Id: cmb.h,v 1.52 2019/01/21 15:08:47 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.52  2019/01/21 15:08:47  cmb
+ * Updated
+ *
  * Revision 1.51  2019/01/21 12:00:00  cmb
  * Added function name for getting host number
  *
@@ -272,6 +275,7 @@
 #define HOST_MICA 1
 #define HOST_OPAL 2
 #define HOST_AGATE 3
+#define HOST_LAST  3 /* Update whenever a new host is added */
 
 /*----------------------------------------------------------------------
  * Type definitions
