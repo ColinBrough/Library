@@ -4,9 +4,12 @@
  *		stuff for the library routines.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.c,v 1.10 2013/09/19 11:39:35 cmb Exp $
+ * $Id: cmb.c,v 1.11 2019/01/21 11:46:35 cmb Exp $
  *
  * $Log: cmb.c,v $
+ * Revision 1.11  2019/01/21 11:46:35  cmb
+ * Updated
+ *
  * Revision 1.10  2013/09/19 11:39:35  cmb
  * Updated
  *
@@ -45,6 +48,7 @@ WINDOW *Screen;			/* Curses window to use.		*/
 int inside_curses = FALSE;	/* Flag indicating whether in curses	*/
 FILE *tfile = NULL;		/* Trace file				*/
 char HostName[200] = "NULL";	/* A blank value to start with...	*/
+int HostNumber = -1;		/* A blank value to start with...	*/
 
 char *MonthNamesLong[13] = { NULL, "January", "February", "March", "April", 
 			     "May", "June", "July", "August", "September", 
