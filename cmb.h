@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.47 2018/08/14 12:48:21 cmb Exp $
+ * $Id: cmb.h,v 1.48 2019/01/09 16:40:22 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.48  2019/01/09 16:40:22  cmb
+ * Added file detection/confirmation routine header
+ *
  * Revision 1.47  2018/08/14 12:48:21  cmb
  * Updated
  *
@@ -311,6 +314,7 @@ void copy_file(FILE *outs, const char *infname, const char *path);
 FileDes *MapFile(const char *filename, const char *path);
 void UnmapFile(FileDes *f);
 int IsNewerN(char *f1, char *f2);
+int IsFile(char *f);
 int ReadIntFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
 
