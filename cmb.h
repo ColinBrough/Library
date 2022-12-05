@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.71 2021/07/27 16:48:33 cmb Exp $
+ * $Id: cmb.h,v 1.72 2021/07/27 19:01:11 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.72  2021/07/27 19:01:11  cmb
+ * Updated colour pair list
+ *
  * Revision 1.71  2021/07/27 16:48:33  cmb
  * Added text and line centering routines
  *
@@ -284,6 +287,7 @@
 #define MAGENTA_ON_BLACK 12
 #define CYAN_ON_BLACK    13
 #define WHITE_ON_BLACK   14
+#define WHITE_ON_RED     15
 
 /*----------------------------------------------------------------------
  * A fancy error reporting macro - doubt this will work except with gcc!
