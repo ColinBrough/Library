@@ -4,9 +4,12 @@
  *			of my own library of useful stuff.
  *
  *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.4 1998/08/04 19:12:48 cmb Exp $
+ * $Id: FileUtils.c,v 1.5 1998/08/04 21:59:42 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.5  1998/08/04 21:59:42  cmb
+ * Removed development printing of progress output.
+ *
  * Revision 1.4  1998/08/04 19:12:48  cmb
  * Made the MapFile wrapper use the stdarg macros to detect whether,
  * along with the filename, a path component is passed in. If so,
@@ -117,13 +120,10 @@ MapFile(char *filename, ...)
     path = va_arg(ap, char *);
     if ((path != NULL) && (strlen(path) != 0))
     {
-        fprintf(stderr, "Got a path name: %s [%d] (%s)\n",
-                path, strlen(path), filename);
         sprintf(f->filename, "%s/%s", path, filename);
     }
     else
     {
-        fprintf(stderr, "No path name: (%s)\n", filename);
         strcpy(f->filename, filename);
     }
     
