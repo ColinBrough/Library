@@ -3,10 +3,14 @@
  *	FileUtils.c	File handling utility routines that are part
  *			of my own library of useful stuff.
  *
- *----------------------------------------------------------------------
- * $Id: FileUtils.c,v 1.7 1998/08/05 15:18:30 cmb Exp $
+ *---------------------------------------------------------------------- * $Id: FileUtils.c,v 1.8 1998/08/21 20:52:03 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.8  1998/08/21 20:52:03  cmb
+ * Removed use of varargs, since was introducing a bug. Made routines
+ * take a path argument, which will be explicitly NULL when no path needs
+ * to be prepended to the filename.
+ *
  * Revision 1.7  1998/08/05 15:18:30  cmb
  * Made copy_file able to take an optional third argument which specifies
  * a path to be prepended to the filename.
@@ -94,15 +98,10 @@ unmap_file(FileDes *f)
  *----------------------------------------------------------------------*/
 
 void
-copy_file(FILE *outs, const char *infname, ...)
+copy_file(FILE *outs, const char *infname, const char *path)
 {
-    va_list ap;
     FileDes f;
-    char *path = NULL;
-    
-    va_start(ap, infname);
 
-    path = va_arg(ap, char *);
     if ((path != NULL) && (strlen(path) != 0))
     {
         sprintf(f.filename, "%s/%s", path, infname);
@@ -115,8 +114,6 @@ copy_file(FILE *outs, const char *infname, ...)
     map_file(&f);
     fwrite(f.page, sizeof(char), f.length, outs);
     unmap_file(&f);
-
-    va_end(ap);
 }
 
 /*----------------------------------------------------------------------
@@ -127,13 +124,9 @@ copy_file(FILE *outs, const char *infname, ...)
  *----------------------------------------------------------------------*/
 
 FileDes *
-MapFile(const char *filename, ...)
+MapFile(const char *filename, const char *path)
 {
-    va_list ap;
     FileDes *f;
-    char *path = NULL;
-    
-    va_start(ap, filename);
     
     if ((f = (FileDes *) malloc(sizeof(FileDes))) == NULL)
     {
@@ -141,7 +134,6 @@ MapFile(const char *filename, ...)
               "while trying\nto map the file: %s\n", filename);
     }
 
-    path = va_arg(ap, char *);
     if ((path != NULL) && (strlen(path) != 0))
     {
         sprintf(f->filename, "%s/%s", path, filename);
@@ -153,7 +145,6 @@ MapFile(const char *filename, ...)
     
     map_file(f);
 
-    va_end(ap);
     return(f);
 }
 
