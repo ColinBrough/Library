@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.55 2019/01/21 19:29:01 cmb Exp $
+ * $Id: cmb.h,v 1.56 2019/02/11 14:57:26 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.56  2019/02/11 14:57:26  cmb
+ * Updated list of known hostnames
+ *
  * Revision 1.55  2019/01/21 19:29:01  cmb
  * Updated
  *
@@ -287,7 +290,8 @@
 #define HOST_OPAL  2
 #define HOST_AGATE 3
 #define HOST_TOPAZ 4
-#define HOST_LAST  4	/* Update whenever a new host is added		*/
+#define HOST_STONE 5
+#define HOST_LAST  5	/* Update whenever a new host is added		*/
 #define NUMHOSTS   8	/* Max number of hosts this code can handle	*/
 
 /*----------------------------------------------------------------------
