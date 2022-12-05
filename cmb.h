@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.29 2012/08/23 20:19:58 cmb Exp $
+ * $Id: cmb.h,v 1.30 2012/08/24 09:34:08 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.30  2012/08/24 09:34:08  cmb
+ * Updated
+ *
  * Revision 1.29  2012/08/23 20:19:58  cmb
  * Added extra date handling utility routines
  *
@@ -217,6 +220,8 @@ extern FILE *tfile;		/* Trace file				*/
 
 extern char *MonthNamesLong[13];	/* Names of the months		*/
 extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
+extern char *WeekNamesLong[7];		/* Names of the months		*/
+extern char *WeekNamesShort[7];		/* Short form is 1st 3 chars	*/
 
 /*----------------------------------------------------------------------
  * Now the headers for each of the available routines.
