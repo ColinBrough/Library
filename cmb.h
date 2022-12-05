@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.69 2021/04/19 13:30:11 cmb Exp $
+ * $Id: cmb.h,v 1.70 2021/05/29 21:41:25 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.70  2021/05/29 21:41:25  cmb
+ * Updated
+ *
  * Revision 1.69  2021/04/19 13:30:11  cmb
  * Added int_center function header
  *
@@ -403,6 +406,7 @@ int IsDir(char *f);
 int IsExisting(char *f);
 int FileSize(char *f);
 int ReadIntFromFile(char *fname);
+float ReadFloatFromFile(char *fname);
 void CreateDirectoryPath(char *pathname);
 void CopyFile(char *src, char *dest);
 int CmpFile(char *src, char *dest);
