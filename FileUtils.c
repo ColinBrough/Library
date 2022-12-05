@@ -4,9 +4,14 @@
  *			of my own library of useful stuff.
  *
  *---------------------------------------------------------------------- 
- * $Id: FileUtils.c,v 1.19 2020/05/28 19:30:05 cmb Exp $
+ * $Id: FileUtils.c,v 1.20 2020/12/29 21:21:37 cmb Exp $
  *
  * $Log: FileUtils.c,v $
+ * Revision 1.20  2020/12/29 21:21:37  cmb
+ * Rewrite of CopyFile routine when I realised it was truncating large
+ * files on copy - probably some kind of kernel limit thing. Used a code
+ * snippet from stackoverflow to redo it.
+ *
  * Revision 1.19  2020/05/28 19:30:05  cmb
  * Fixed typo
  *
@@ -391,9 +396,8 @@ void CreateDirectoryPath(char *pname)
 void CopyFile(char *src, char *dest)
 {    
     int input, output;
-    off_t bytesCopied = 0;
-    
-    struct stat sbuf = {0};
+    char buf[4096];
+    ssize_t nread;
 
     if ((input = open(src, O_RDONLY)) == -1)
     {
@@ -405,11 +409,37 @@ void CopyFile(char *src, char *dest)
         error("Can't creat destination file for copy: %s\n", dest);
     }
 
-    fstat(input, &sbuf);
-    sendfile(output, input, &bytesCopied, sbuf.st_size);
+    while (nread = read(input, buf, sizeof buf), nread > 0)
+    {
+        char *out_ptr = buf;
+        ssize_t nwritten;
 
+        do
+	{
+            nwritten = write(output, out_ptr, nread);
+
+            if (nwritten >= 0)
+            {
+                nread -= nwritten;
+                out_ptr += nwritten;
+            }
+            else if (errno != EINTR)
+            {
+                error("Unknown error condition while copying\n");
+            }
+        }
+	while (nread > 0);
+    }
+    if (nread != 0)
+    {
+	error("Error condition while copying\n");
+    }
+    
+    if (close(output) < 0)
+    {
+	error("Failed to close output file descriptor on file copy\n");
+    }
     close(input);
-    close(output);
 }
 
 /*----------------------------------------------------------------------
