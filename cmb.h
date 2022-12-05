@@ -5,9 +5,14 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.9 1998/08/19 21:12:20 cmb Exp $
+ * $Id: cmb.h,v 1.10 1998/08/21 20:51:04 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.10  1998/08/21 20:51:04  cmb
+ * Updated so now doesn't use varargs, but assumes that the path will
+ * come in NULL when no path has to be prepended to a filename to be
+ * mapped or copied.
+ *
  * Revision 1.9  1998/08/19 21:12:20  cmb
  * Include the time header, and function prototypes for the colour
  * routines.
@@ -156,9 +161,9 @@ map_file(FileDes *f);
 void
 unmap_file(FileDes *f);
 void
-copy_file(FILE *outs, const char *infname, ...);
+copy_file(FILE *outs, const char *infname, const char *path);
 FileDes *
-MapFile(const char *filename, ...);
+MapFile(const char *filename, const char *path);
 void
 UnmapFile(FileDes *f);
 
