@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.52 2019/01/21 15:08:47 cmb Exp $
+ * $Id: cmb.h,v 1.53 2019/01/21 19:09:23 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.53  2019/01/21 19:09:23  cmb
+ * Updated
+ *
  * Revision 1.52  2019/01/21 15:08:47  cmb
  * Updated
  *
@@ -271,11 +274,12 @@
  * Some constants to represent particular hosts
  *----------------------------------------------------------------------*/
 
-#define HOST_ROCK 0
-#define HOST_MICA 1
-#define HOST_OPAL 2
+#define HOST_ROCK  0
+#define HOST_MICA  1
+#define HOST_OPAL  2
 #define HOST_AGATE 3
-#define HOST_LAST  3 /* Update whenever a new host is added */
+#define HOST_TOPAZ 4
+#define HOST_LAST  4 /* Update whenever a new host is added */
 
 /*----------------------------------------------------------------------
  * Type definitions
@@ -373,6 +377,8 @@ int ishost(char *hname);
 int topaz(void);
 int mica(void);
 int rock(void);
+int opal(void);
+int agate(void);
 int strlastcmp(char *s1, char *s2);
 int strfirstcmp(char *s1, char *s2);
 void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec);
