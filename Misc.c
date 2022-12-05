@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.14 2013/09/19 11:46:20 cmb Exp $
+ * $Id: Misc.c,v 1.15 2013/09/19 11:46:57 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.15  2013/09/19 11:46:57  cmb
+ * Fixed typo bug
+ *
  * Revision 1.14  2013/09/19 11:46:20  cmb
  * Updated
  *
@@ -83,7 +86,7 @@ int ishost(char *hname)
 
 int topaz(void)
 {
-    return(ishost("topaz"))
+    return(ishost("topaz"));
 }
 
 /*----------------------------------------------------------------------
@@ -92,7 +95,7 @@ int topaz(void)
 
 int mica(void)
 {
-    return(ishost("mica"))
+    return(ishost("mica"));
 }
 
 /*----------------------------------------------------------------------
@@ -101,7 +104,7 @@ int mica(void)
 
 int rock(void)
 {
-    return(ishost("rock"))
+    return(ishost("rock"));
 }
 
 /*----------------------------------------------------------------------
