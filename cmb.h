@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.22 2003/11/18 15:47:45 cmb Exp $
+ * $Id: cmb.h,v 1.23 2005/06/01 19:20:04 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.23  2005/06/01 19:20:04  cmb
+ * Updated with names of the month stuff
+ *
  * Revision 1.22  2003/11/18 15:47:45  cmb
  * Updated
  *
@@ -193,6 +196,9 @@ typedef struct FileDes
 extern WINDOW *Screen;		/* Curses window to use.		*/
 extern int inside_curses;       /* Flag indicating whether in curses    */
 extern FILE *tfile;		/* Trace file				*/
+
+extern char *MonthNamesLong[13];	/* Names of the months		*/
+extern char *MonthNamesShort[13];	/* Short form is 1st 3 chars	*/
 
 /*----------------------------------------------------------------------
  * Now the headers for each of the available routines.
