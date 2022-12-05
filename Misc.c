@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.21 2018/02/20 15:39:43 cmb Exp $
+ * $Id: Misc.c,v 1.22 2018/06/06 12:20:49 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.22  2018/06/06 12:20:49  cmb
+ * Updated
+ *
  * Revision 1.21  2018/02/20 15:39:43  cmb
  * Shifted base year to 1900, hopefully fixing a bug with DaysBetween and
  * MonthsBetween routines
@@ -442,6 +445,79 @@ char *DayNameLong(int year, int month, int day)
 char *DayNameShort(int year, int month, int day)
 {
     return(WeekNamesShort[DaysSinceSunday(year, month, day)]);
+}
+
+/*----------------------------------------------------------------------
+ * ToUTC	Convert an hour to the equivalent UTC hour, taking 
+ *		cognisance of BST...
+ *----------------------------------------------------------------------*/
+
+int ToUTC(int Year, int Month, int Day, int Hour)
+{
+    int IsSummer = false;
+    int mstart, mend, dstart, dend;
+    
+    int SummerTime[40][4] = { { 27, 3, 30, 10 }, /* 2016 */
+			      { 26, 3, 29, 10 }, /* 2017 */
+			      { 25, 3, 28, 10 }, /* 2018 */
+			      { 31, 3, 27, 10 }, /* 2019 */
+			      { 29, 3, 25, 10 }, /* 2020 */
+			      { 28, 3, 31, 10 }, /* 2021 */
+			      { 27, 3, 30, 10 }, /* 2022 */
+			      { 26, 3, 29, 10 }, /* 2023 */
+			      { 31, 3, 27, 10 }, /* 2024 */
+			      { 30, 3, 26, 10 }, /* 2025 */
+			      { 29, 3, 25, 10 }, /* 2026 */
+			      { 28, 3, 31, 10 }, /* 2027 */
+			      { 26, 3, 29, 10 }, /* 2028 */
+			      { 25, 3, 28, 10 }, /* 2029 */
+			      { 31, 3, 27, 10 }, /* 2030 */
+			      {  0, 3,  0, 10 }, /* 2031; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2032; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2033; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2034; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2035; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2036; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2037; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2038; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2039; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2040; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2041; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2042; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2043; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2044; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2045; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2046; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2047; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2048; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2049; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2050; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2051; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2052; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2053; not yet specified */
+			      {  0, 3,  0, 10 }, /* 2054; not yet specified */
+			      {  0, 3,  0, 10 }  /* 2055; not yet specified */
+    };
+    dstart = SummerTime[ Year - 2016 ][ 0 ];
+    mstart = SummerTime[ Year - 2016 ][ 1 ];
+    dend   = SummerTime[ Year - 2016 ][ 2 ];
+    mend   = SummerTime[ Year - 2016 ][ 3 ];
+    if (dstart == 0)
+    {
+	error("BST dates haven't been specified in the code yet for %d...\n", Year);
+    }
+    
+    if ((DaysBetween(Year, Month, Day, Year, mstart, dstart) >= 0) &&
+	(DaysBetween(Year, Month, Day, Year, mend,   dend)   <  0))
+    {
+	IsSummer = true;
+    }
+    
+    if (IsSummer)
+    {
+	Hour--;
+    }
+    return(Hour);
 }
 
 /*----------------------------------------------------------------------
