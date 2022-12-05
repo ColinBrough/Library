@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.2 2003/04/22 23:06:33 cmb Exp $
+ * $Id: Misc.c,v 1.3 2003/04/22 23:07:42 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.3  2003/04/22 23:07:42  cmb
+ * Fixed typo
+ *
  * Revision 1.2  2003/04/22 23:06:33  cmb
  * Updated.
  *
@@ -48,10 +51,10 @@ void ReturnTime(int *year, int *month, int *day, int *hour, int *min, int *sec)
     time( &t );
     T = localtime(&t);
     
-    *second = T->tm_sec;
-    *min    = T->tm_min;
-    *hour   = T->tm_hour;
-    *day    = T->tm_mday;
-    *month  = T->tm_mon + 1;
-    *year   = T->tm_year + 1900;
+    *sec   = T->tm_sec;
+    *min   = T->tm_min;
+    *hour  = T->tm_hour;
+    *day   = T->tm_mday;
+    *month = T->tm_mon + 1;
+    *year  = T->tm_year + 1900;
 }
