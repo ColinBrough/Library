@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.10 2008/10/21 21:10:31 cmb Exp $
+ * $Id: Misc.c,v 1.11 2012/08/23 20:20:03 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.11  2012/08/23 20:20:03  cmb
+ * Added extra date handling utility routines
+ *
  * Revision 1.10  2008/10/21 21:10:31  cmb
  * Added routines to:
  *
@@ -190,6 +193,66 @@ int DaysBetween(int y1, int m1, int d1, int y2, int m2, int d2)
     }
     
     return(days1 - days2);
+}
+
+/*----------------------------------------------------------------------
+ * DaysSinceSunday	Routine to return the number of days (0..6) 
+ *			since Sunday, given the  input date.
+ *----------------------------------------------------------------------*/
+
+int DaysSinceSunday(int year, int month, int day)
+{
+    struct tm T;
+
+    T.tm_sec = 0;
+    T.tm_min = 0;
+    T.tm_hour = 9;
+    T.tm_mday = day;
+    T.tm_mon  = month - 1;
+    T.tm_year = year - 1900;
+    T.tm_isdst = 0;
+    
+    mktime( &T );
+    
+    return(T.tm_wday);
+}
+
+/*----------------------------------------------------------------------
+ * DaysSinceMonday	Routine to return the number of days (0..6) 
+ *			since Monday, given the  input date.
+ *----------------------------------------------------------------------*/
+
+int DaysSinceMonday(int year, int month, int day)
+{
+    int d;
+    d = DaysSinceSunday(year, month, day);
+    d--;
+    if (d < 0)
+    {
+	d = 6;
+    }
+    return(d);
+}
+
+/*----------------------------------------------------------------------
+ * IsDate	Rough validity checker for a date
+ *----------------------------------------------------------------------*/
+
+int IsDate(int year, int month, int day)
+{
+    if ((year < 1900) || (year > 2099))
+    {
+	return(FALSE);
+    }
+    if ((month < 1) || (month > 12))
+    {
+	return(FALSE);
+    }
+    if ((day < 1) || (day > DaysInMonth(year,month)))
+    {
+	return(FALSE);
+    }
+    return(TRUE);
 }
 
 /*----------------------------------------------------------------------
