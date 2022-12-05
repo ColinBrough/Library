@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.41 2015/05/08 11:13:14 cmb Exp $
+ * $Id: cmb.h,v 1.42 2015/05/21 11:54:22 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.42  2015/05/21 11:54:22  cmb
+ * Added routines to return the day of the week name of a given date
+ *
  * Revision 1.41  2015/05/08 11:13:14  cmb
  * Updated
  *
@@ -339,6 +342,8 @@ int DaysSinceSunday(int year, int month, int day);
 int DaysSinceMonday(int year, int month, int day);
 void AddDaysTo(int *Year, int *Month, int *Day, int Days);
 int IsDate(int year, int month, int day);
+char *DayNameLong(int year, int month, int day);
+char *DayNameShort(int year, int month, int day);
 int Minimum(int a, int b);
 
 /*----------------------------------------
