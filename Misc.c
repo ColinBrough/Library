@@ -3,9 +3,12 @@
  *	Misc.c		Miscellaneous utility routines
  *
  *----------------------------------------------------------------------
- * $Id: Misc.c,v 1.5 2003/06/03 12:52:20 cmb Exp $
+ * $Id: Misc.c,v 1.6 2003/11/18 15:47:48 cmb Exp $
  *
  * $Log: Misc.c,v $
+ * Revision 1.6  2003/11/18 15:47:48  cmb
+ * Updated
+ *
  * Revision 1.5  2003/06/03 12:52:20  cmb
  * Updated to throw away fields if passed in NULL.
  *
@@ -84,4 +87,13 @@ int DaysInMonth(int year, int month)
         days_in_month[2]++;	/* February has 29 days... */
     }
     return(days_in_month[month]);
+}
+
+/*----------------------------------------------------------------------
+ * Minimum	Routine to return the smaller of two integers
+ *----------------------------------------------------------------------*/
+
+int Minimum(int a, int b)
+{
+    (a < b) ? return(a) : return(b);
 }
