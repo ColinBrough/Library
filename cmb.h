@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.31 2013/01/30 14:05:15 cmb Exp $
+ * $Id: cmb.h,v 1.32 2013/01/30 14:06:24 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.32  2013/01/30 14:06:24  cmb
+ * Updated
+ *
  * Revision 1.31  2013/01/30 14:05:15  cmb
  * UPdated
  *
@@ -134,6 +137,7 @@
 #include <time.h>
 #include <mntent.h>
 #include <pwd.h>
+#include <math.h>
 
 /*----------------------------------------------------------------------
  * Some common ncurses defines, to save space in the application specific
