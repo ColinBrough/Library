@@ -4,13 +4,18 @@
  *			text output to stdout - ie, not inside curses.
  *
  *----------------------------------------------------------------------
- * $Id: Colours.c,v 1.1 1998/08/19 21:09:55 cmb Exp $
+ * $Id: Colours.c,v 1.2 1998/08/19 21:13:33 cmb Exp $
  *
  * $Log: Colours.c,v $
+ * Revision 1.2  1998/08/19 21:13:33  cmb
+ * Added include!
+ *
  * Revision 1.1  1998/08/19 21:09:55  cmb
  * Initial revision
  *
  *----------------------------------------------------------------------*/
+
+#include <cmb.h>
 
 void
 black(void)
