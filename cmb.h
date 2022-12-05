@@ -5,9 +5,12 @@
  *		C code.
  *
  *----------------------------------------------------------------------
- * $Id: cmb.h,v 1.70 2021/05/29 21:41:25 cmb Exp $
+ * $Id: cmb.h,v 1.71 2021/07/27 16:48:33 cmb Exp $
  *
  * $Log: cmb.h,v $
+ * Revision 1.71  2021/07/27 16:48:33  cmb
+ * Added text and line centering routines
+ *
  * Revision 1.70  2021/05/29 21:41:25  cmb
  * Updated
  *
@@ -419,6 +422,8 @@ void StartCurses(void);
 void StopCurses(void);
 int  get_string(char *result, int y, int x, int maxlen, int up_down);
 void large_num(int x, int y, int digit);
+void CtrText(int line, char *string);
+void CtrLine(int line, int len);
 
 /*----------------------------------------------------------------------
  * CursesLargeFont.c	Static array with definition for a large font to 
