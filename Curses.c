@@ -4,9 +4,12 @@
  *			a curses application.
  *
  *----------------------------------------------------------------------
- * $Id: Curses.c,v 1.7 2021/07/27 16:52:49 cmb Exp $
+ * $Id: Curses.c,v 1.8 2021/07/27 19:25:11 cmb Exp $
  *
  * $Log: Curses.c,v $
+ * Revision 1.8  2021/07/27 19:25:11  cmb
+ * Added white on red colour pair
+ *
  * Revision 1.7  2021/07/27 16:52:49  cmb
  * Added functions to display a string centred on the screen at a
  * particular line, and to display a centred line of dashes ('---') of a
@@ -148,6 +151,12 @@ void StartCurses(void)
     {
         error("Failed to initialise colour pair : CYAN_ON_BLACK\n");
     }
+
+    if (init_pair(WHITE_ON_RED, COLOR_WHITE, COLOR_RED) == ERR)
+    {
+        error("Failed to initialise colour pair : WHITE_ON_RED\n");
+    }
+
     attrset(A_NORMAL | COLOR_PAIR(BLACK_ON_WHITE));
 }
 
